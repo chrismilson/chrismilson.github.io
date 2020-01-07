@@ -51,7 +51,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h2>Chris Milson</h2>\n<p>\n  <app-typer [words]=\"typerWords\"></app-typer>\n</p>\n\n<router-outlet></router-outlet>\n";
+    __webpack_exports__["default"] = "<app-wallpaper></app-wallpaper>\n\n<h2>Chris Milson</h2>\n<p>\n  <app-typer [words]=\"typerWords\"></app-typer>\n</p>\n\n<router-outlet></router-outlet>\n";
     /***/
   },
 
@@ -789,13 +789,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _typer_typer_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./typer/typer.component */
     "./src/app/typer/typer.component.ts");
+    /* harmony import */
+
+
+    var _wallpaper_wallpaper_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./wallpaper/wallpaper.component */
+    "./src/app/wallpaper/wallpaper.component.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
     };
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _typer_typer_component__WEBPACK_IMPORTED_MODULE_5__["TyperComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _typer_typer_component__WEBPACK_IMPORTED_MODULE_5__["TyperComponent"], _wallpaper_wallpaper_component__WEBPACK_IMPORTED_MODULE_6__["WallpaperComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]],
       providers: [],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -930,6 +936,192 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: ["@keyframes flash {from {opacity: 1} to {opacity: 0}}", ".cursor { animation: flash 0.5s infinite alternate; }", ":host { user-select: none; }"]
     })], TyperComponent);
     /***/
+  },
+
+  /***/
+  "./src/app/wallpaper/wallpaper.component.ts":
+  /*!**************************************************!*\
+    !*** ./src/app/wallpaper/wallpaper.component.ts ***!
+    \**************************************************/
+
+  /*! exports provided: WallpaperComponent */
+
+  /***/
+  function srcAppWallpaperWallpaperComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "WallpaperComponent", function () {
+      return WallpaperComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _wallpapers_ripple__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./wallpapers/ripple */
+    "./src/app/wallpaper/wallpapers/ripple.ts");
+
+    var WallpaperComponent =
+    /*#__PURE__*/
+    function () {
+      function WallpaperComponent() {
+        _classCallCheck(this, WallpaperComponent);
+      }
+
+      _createClass(WallpaperComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.ctx = this.canvas.nativeElement.getContext('2d');
+          this.ctx.canvas.width = window.innerWidth;
+          this.ctx.canvas.height = window.innerHeight;
+          this.alg = new _wallpapers_ripple__WEBPACK_IMPORTED_MODULE_2__["default"](this.ctx);
+          this.animate();
+        }
+      }, {
+        key: "ngOnDestroy",
+        value: function ngOnDestroy() {
+          window.cancelAnimationFrame(this.timeout);
+        }
+      }, {
+        key: "onResize",
+        value: function onResize() {
+          this.ctx.canvas.width = window.innerWidth;
+          this.ctx.canvas.height = window.innerHeight;
+        }
+      }, {
+        key: "animate",
+        value: function animate() {
+          var _this2 = this;
+
+          this.alg.render(this.ctx);
+          this.timeout = window.requestAnimationFrame(function () {
+            return _this2.animate();
+          });
+        }
+      }]);
+
+      return WallpaperComponent;
+    }();
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('canvas', {
+      static: true
+    })], WallpaperComponent.prototype, "canvas", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('window:resize', ['$event'])], WallpaperComponent.prototype, "onResize", null);
+    WallpaperComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-wallpaper',
+      template: '<canvas #canvas></canvas>',
+      styles: ["canvas {\n      z-index: -1;\n      position: fixed;\n      top: 0;\n      left: 0;\n      width: 100vw;\n      height: 100vh;\n    }"]
+    })], WallpaperComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/wallpaper/wallpapers/ripple.ts":
+  /*!************************************************!*\
+    !*** ./src/app/wallpaper/wallpapers/ripple.ts ***!
+    \************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppWallpaperWallpapersRippleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "default", function () {
+      return Ripple;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Center =
+    /*#__PURE__*/
+    function () {
+      function Center(width, height) {
+        _classCallCheck(this, Center);
+
+        this.color = {
+          r: Math.floor(Math.random() * 256),
+          g: Math.floor(Math.random() * 256),
+          b: Math.floor(Math.random() * 256)
+        };
+        this.age = Math.floor(Math.random() * -200);
+        this.x = Math.floor(Math.random() * width);
+        this.y = Math.floor(Math.random() * height);
+      }
+
+      _createClass(Center, [{
+        key: "draw",
+        value: function draw(ctx) {
+          if (this.age < 0) {
+            this.age++;
+            return false;
+          }
+
+          ctx.beginPath(); // by taking the square root, the area will increase uniformly
+
+          ctx.ellipse(this.x, this.y, Math.sqrt(this.age) * 10, Math.sqrt(this.age) * 10, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = "rgba(\n      ".concat(this.color.r, ",\n      ").concat(this.color.g, ",\n      ").concat(this.color.b, ",\n      ").concat(1 - this.age / 200, "\n    )");
+          ctx.stroke();
+          return this.age++ > 200;
+        }
+      }]);
+
+      return Center;
+    }();
+
+    var Ripple =
+    /*#__PURE__*/
+    function () {
+      function Ripple(ctx) {
+        _classCallCheck(this, Ripple);
+
+        this.centers = new Array(4);
+
+        for (var i = 0; i < this.centers.length; i++) {
+          this.centers[i] = new Center(ctx.canvas.width, ctx.canvas.height);
+        }
+      }
+
+      _createClass(Ripple, [{
+        key: "render",
+        value: function render(ctx) {
+          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+          for (var i = 0; i < this.centers.length; i++) {
+            if (this.centers[i].draw(ctx)) {
+              this.centers[i] = new Center(ctx.canvas.width, ctx.canvas.height);
+            }
+          }
+        }
+      }]);
+
+      return Ripple;
+    }();
+    /***/
+
   },
 
   /***/
