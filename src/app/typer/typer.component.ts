@@ -67,7 +67,7 @@ export class TyperComponent implements OnInit, OnDestroy {
       this.char++;
       if (this.char === this.words[this.word].length) {
         this.dir = false;
-        delay = 500;
+        delay = 700;
       } else {
         delay = 100 + Math.floor(Math.random() * 100);
       }
@@ -78,8 +78,10 @@ export class TyperComponent implements OnInit, OnDestroy {
         this.dir = true;
         this.word = (this.word + 1) % this.words.length;
         delay = 300;
+      } else if (this.char === this.words[this.word].length - 1) {
+        delay = 250;
       } else {
-        delay = 80;
+        delay = 40;
       }
     }
 
