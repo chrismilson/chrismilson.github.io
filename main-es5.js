@@ -51,7 +51,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-wallpaper></app-wallpaper>\n\n<h2>Chris Milson</h2>\n<p>\n  <app-typer [words]=\"typerWords\"></app-typer>\n</p>\n\n<router-outlet></router-outlet>\n";
+    __webpack_exports__["default"] = "\n<h2>Chris Milson</h2>\n<p>\n  <app-typer [words]=\"typerWords\"></app-typer>\n</p>\n\n<app-social></app-social>\n<app-wallpaper></app-wallpaper>\n<router-outlet></router-outlet>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/social/social.component.html":
+  /*!************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/social/social.component.html ***!
+    \************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppSocialSocialComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"icon-list\">\n  <a\n    *ngFor=\"let icon of icons\"\n    [title]=\"icon.title\"\n    [href]=\"icon.link\"\n  >\n    <fa-icon [icon]=\"icon.icon\"></fa-icon>\n  </a>\n</div>\n";
     /***/
   },
 
@@ -774,38 +794,125 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @fortawesome/angular-fontawesome */
+    "./node_modules/@fortawesome/angular-fontawesome/fesm2015/angular-fontawesome.js");
+    /* harmony import */
+
+
+    var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./app-routing.module */
     "./src/app/app-routing.module.ts");
     /* harmony import */
 
 
-    var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _typer_typer_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _typer_typer_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./typer/typer.component */
     "./src/app/typer/typer.component.ts");
     /* harmony import */
 
 
-    var _wallpaper_wallpaper_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _wallpaper_wallpaper_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ./wallpaper/wallpaper.component */
     "./src/app/wallpaper/wallpaper.component.ts");
+    /* harmony import */
+
+
+    var _social_social_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./social/social.component */
+    "./src/app/social/social.component.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
     };
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _typer_typer_component__WEBPACK_IMPORTED_MODULE_5__["TyperComponent"], _wallpaper_wallpaper_component__WEBPACK_IMPORTED_MODULE_6__["WallpaperComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _typer_typer_component__WEBPACK_IMPORTED_MODULE_6__["TyperComponent"], _wallpaper_wallpaper_component__WEBPACK_IMPORTED_MODULE_7__["WallpaperComponent"], _social_social_component__WEBPACK_IMPORTED_MODULE_8__["SocialComponent"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeModule"]],
       providers: [],
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })], AppModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/social/social.component.ts":
+  /*!********************************************!*\
+    !*** ./src/app/social/social.component.ts ***!
+    \********************************************/
+
+  /*! exports provided: SocialComponent */
+
+  /***/
+  function srcAppSocialSocialComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "SocialComponent", function () {
+      return SocialComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @fortawesome/free-brands-svg-icons */
+    "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+    /* harmony import */
+
+
+    var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @fortawesome/free-solid-svg-icons */
+    "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+
+    var SocialComponent = function SocialComponent() {
+      _classCallCheck(this, SocialComponent);
+
+      this.icons = [{
+        name: 'Github',
+        title: 'Check out my Github',
+        icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faGithub"],
+        link: 'https://github.com/chrismilson'
+      }, {
+        name: 'Linkedin',
+        title: '...or my Linkedin',
+        icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faLinkedin"],
+        link: 'https://www.linkedin.com/in/chris-milson/'
+      }, {
+        name: 'CV',
+        title: 'Have a look at my CV too',
+        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faIdBadge"],
+        link: 'assets/CV.pdf'
+      }];
+    };
+
+    SocialComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-social',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./social.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/social/social.component.html")).default,
+      styles: ["\n    .icon-list {\n      font-size: 1.5rem;\n      position: fixed;\n      top: 0;\n      right: 0;\n\n      display: flex;\n    }\n\n    a {\n      color: inherit;\n      margin: 0.5rem;\n    }\n  "]
+    })], SocialComponent);
     /***/
   },
 
@@ -903,7 +1010,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             if (this.char === this.words[this.word].length) {
               this.dir = false;
-              delay = 500;
+              delay = 700;
             } else {
               delay = 100 + Math.floor(Math.random() * 100);
             }
@@ -915,8 +1022,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               this.dir = true;
               this.word = (this.word + 1) % this.words.length;
               delay = 300;
+            } else if (this.char === this.words[this.word].length - 1) {
+              delay = 250;
             } else {
-              delay = 80;
+              delay = 40;
             }
           }
 
@@ -1062,12 +1171,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       function Center(width, height) {
         _classCallCheck(this, Center);
 
-        this.color = {
-          r: Math.floor(Math.random() * 256),
-          g: Math.floor(Math.random() * 256),
-          b: Math.floor(Math.random() * 256)
-        };
-        this.age = Math.floor(Math.random() * -200);
+        this.color = Math.floor(Math.random() * 256);
+        this.age = -Math.floor(Math.random() * 200);
+        this.size = Math.random() + 0.5;
         this.x = Math.floor(Math.random() * width);
         this.y = Math.floor(Math.random() * height);
       }
@@ -1082,8 +1188,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           ctx.beginPath(); // by taking the square root, the area will increase uniformly
 
-          ctx.ellipse(this.x, this.y, Math.sqrt(this.age) * 10, Math.sqrt(this.age) * 10, 0, 0, Math.PI * 2);
-          ctx.strokeStyle = "rgba(\n      ".concat(this.color.r, ",\n      ").concat(this.color.g, ",\n      ").concat(this.color.b, ",\n      ").concat(1 - this.age / 200, "\n    )");
+          ctx.ellipse(this.x, this.y, Math.sqrt(this.age) * 10 * this.size, Math.sqrt(this.age) * 10 * this.size, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = "hsla(\n      ".concat(this.color, ",\n      100%,\n      40%,\n      ").concat(1 - this.age / 200, "\n    )");
           ctx.stroke();
           return this.age++ > 200;
         }
@@ -1098,9 +1204,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       function Ripple(ctx) {
         _classCallCheck(this, Ripple);
 
-        this.centers = new Array(4);
+        var size = Math.floor(ctx.canvas.width * ctx.canvas.height / 50000);
+        this.centers = new Array(size);
 
-        for (var i = 0; i < this.centers.length; i++) {
+        for (var i = 0; i < size; i++) {
           this.centers[i] = new Center(ctx.canvas.width, ctx.canvas.height);
         }
       }
