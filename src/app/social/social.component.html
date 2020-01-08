@@ -1,0 +1,9 @@
+<div class="icon-list">
+  <a
+    *ngFor="let icon of icons"
+    [title]="icon.title"
+    [href]="icon.link"
+  >
+    <fa-icon [icon]="icon.icon"></fa-icon>
+  </a>
+</div>
