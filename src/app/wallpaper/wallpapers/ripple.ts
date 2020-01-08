@@ -1,10 +1,7 @@
 class Center {
-  private color = {
-    r: Math.floor(Math.random() * 256),
-    g: Math.floor(Math.random() * 256),
-    b: Math.floor(Math.random() * 256)
-  };
-  private age = Math.floor(Math.random() * -200);
+  private color = Math.floor(Math.random() * 256);
+  private age = -Math.floor(Math.random() * 200);
+  private size = Math.random() + 0.5;
   private x: number;
   private y: number;
 
@@ -23,14 +20,15 @@ class Center {
     // by taking the square root, the area will increase uniformly
     ctx.ellipse(
       this.x, this.y,
-      Math.sqrt(this.age) * 10, Math.sqrt(this.age) * 10,
+      Math.sqrt(this.age) * 10 * this.size,
+      Math.sqrt(this.age) * 10 * this.size,
       0, 0, Math.PI * 2
     );
 
-    ctx.strokeStyle = `rgba(
-      ${this.color.r},
-      ${this.color.g},
-      ${this.color.b},
+    ctx.strokeStyle = `hsla(
+      ${this.color},
+      100%,
+      40%,
       ${1 - (this.age / 200)}
     )`;
 
@@ -44,9 +42,10 @@ export default class Ripple {
   centers: any;
 
   constructor(ctx) {
-    this.centers = new Array(4);
+    const size = Math.floor(ctx.canvas.width * ctx.canvas.height / 50000);
+    this.centers = new Array(size);
 
-    for (let i = 0; i < this.centers.length; i++) {
+    for (let i = 0; i < size; i++) {
       this.centers[i] = new Center(ctx.canvas.width, ctx.canvas.height);
     }
   }
@@ -58,5 +57,6 @@ export default class Ripple {
         this.centers[i] = new Center(ctx.canvas.width, ctx.canvas.height);
       }
     }
+
   }
 }
