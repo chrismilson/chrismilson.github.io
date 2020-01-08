@@ -44,7 +44,7 @@ export class SocialComponent {
       name: 'CV',
       title: 'Have a look at my CV too',
       icon: faIdBadge,
-      link: 'myCV'
+      link: 'assets/CV.pdf'
     }
   ];
 }
