@@ -1,0 +1,17 @@
+<div class="levenshtein">
+<!-- columns for each character in display -->
+  <div
+    class="col"
+    *ngFor="let char of display; let i = index"
+  >
+    <div class="char">
+      {{ displayAbove[i] }}
+    </div>
+    <div class="char">
+      {{ char }}
+    </div>
+    <div class="char">
+      {{ displayBelow[i] }}
+    </div>
+  </div>
+</div>

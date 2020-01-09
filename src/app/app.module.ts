@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { TyperComponent } from './typer/typer.component';
 import { WallpaperComponent } from './wallpaper/wallpaper.component';
 import { SocialComponent } from './social/social.component';
+import { LevenshteinComponent } from './levenshtein/levenshtein.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TyperComponent,
     WallpaperComponent,
-    SocialComponent
+    SocialComponent,
+    LevenshteinComponent
   ],
   imports: [
     BrowserModule,
