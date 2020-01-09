@@ -522,7 +522,7 @@ let LevenshteinComponent = class LevenshteinComponent {
         clearTimeout(this.timeout);
     }
     next() {
-        const next = (this.current + 1) % this.words.length;
+        const next = Math.floor(Math.random() * this.words.length);
         const moves = Object(_edit__WEBPACK_IMPORTED_MODULE_2__["default"])(this.words[this.current], this.words[next])
             .map(m => m.match(/^(\w+)( (.))?$/));
         for (const move of moves) {

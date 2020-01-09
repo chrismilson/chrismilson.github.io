@@ -1022,7 +1022,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function next() {
           var _this = this;
 
-          var next = (this.current + 1) % this.words.length;
+          var next = Math.floor(Math.random() * this.words.length);
           var moves = Object(_edit__WEBPACK_IMPORTED_MODULE_2__["default"])(this.words[this.current], this.words[next]).map(function (m) {
             return m.match(/^(\w+)( (.))?$/);
           });
