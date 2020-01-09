@@ -22,6 +22,10 @@ import edit from './edit';
       width: 0.7rem;
       height: 1rem;
     }
+
+    .char:not(.main) {
+      opacity: 0.3;
+    }
   `]
 })
 export class LevenshteinComponent implements OnInit, OnDestroy {
@@ -50,36 +54,21 @@ export class LevenshteinComponent implements OnInit, OnDestroy {
         case 'add':
           // make space in display
           this.display.splice(this.displayAbove.length, 0, ' ');
-          if (Math.random() < 0.5) {
-            this.displayAbove.push(move[3]);
-            this.displayBelow.push(' ');
-          } else {
-            this.displayBelow.push(move[3]);
-            this.displayAbove.push(' ');
-          }
+          this.displayAbove.push(move[3]);
+          this.displayBelow.push('+');
           break;
         case 'replace':
-          if (Math.random() < 0.5) {
-            this.displayAbove.push(move[3]);
-            this.displayBelow.push(' ');
-          } else {
-            this.displayBelow.push(move[3]);
-            this.displayAbove.push(' ');
-          }
+          this.displayAbove.push(move[3]);
+          this.displayBelow.push('~');
           break;
         case 'remove':
-          if (Math.random() < 0.5) {
-            this.displayAbove.push('-');
-            this.displayBelow.push(' ');
-          } else {
-            this.displayBelow.push('-');
-            this.displayAbove.push(' ');
-          }
+          this.displayAbove.push('-');
+          this.displayBelow.push('-');
           break;
         case 'leave':
         default:
           this.displayAbove.push(' ');
-          this.displayBelow.push(' ')
+          this.displayBelow.push(' ');
       }
     }
 
