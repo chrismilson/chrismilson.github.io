@@ -45,7 +45,7 @@ export class LevenshteinComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    const next = (this.current + 1) % this.words.length;
+    const next = Math.floor(Math.random() * this.words.length);
     const moves = edit(this.words[this.current], this.words[next])
       .map(m => m.match(/^(\w+)( (.))?$/));
 
