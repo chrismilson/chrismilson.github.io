@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"levenshtein\">\n<!-- columns for each character in display -->\n  <div\n    class=\"col\"\n    *ngFor=\"let char of display; let i = index\"\n  >\n    <div class=\"char\">\n      {{ displayAbove[i] }}\n    </div>\n    <div class=\"char\">\n      {{ char }}\n    </div>\n    <div class=\"char\">\n      {{ displayBelow[i] }}\n    </div>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"levenshtein\">\n<!-- columns for each character in display -->\n  <div\n    class=\"col\"\n    *ngFor=\"let char of display; let i = index\"\n  >\n    <div class=\"char\">\n      {{ displayAbove[i] }}\n    </div>\n    <div class=\"char main\">\n      {{ char }}\n    </div>\n    <div class=\"char\">\n      {{ displayBelow[i] }}\n    </div>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -530,34 +530,16 @@ let LevenshteinComponent = class LevenshteinComponent {
                 case 'add':
                     // make space in display
                     this.display.splice(this.displayAbove.length, 0, ' ');
-                    if (Math.random() < 0.5) {
-                        this.displayAbove.push(move[3]);
-                        this.displayBelow.push(' ');
-                    }
-                    else {
-                        this.displayBelow.push(move[3]);
-                        this.displayAbove.push(' ');
-                    }
+                    this.displayAbove.push(move[3]);
+                    this.displayBelow.push('+');
                     break;
                 case 'replace':
-                    if (Math.random() < 0.5) {
-                        this.displayAbove.push(move[3]);
-                        this.displayBelow.push(' ');
-                    }
-                    else {
-                        this.displayBelow.push(move[3]);
-                        this.displayAbove.push(' ');
-                    }
+                    this.displayAbove.push(move[3]);
+                    this.displayBelow.push('~');
                     break;
                 case 'remove':
-                    if (Math.random() < 0.5) {
-                        this.displayAbove.push('-');
-                        this.displayBelow.push(' ');
-                    }
-                    else {
-                        this.displayBelow.push('-');
-                        this.displayAbove.push(' ');
-                    }
+                    this.displayAbove.push('-');
+                    this.displayBelow.push('-');
                     break;
                 case 'leave':
                 default:
@@ -582,7 +564,7 @@ LevenshteinComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-levenshtein',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./levenshtein.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/levenshtein/levenshtein.component.html")).default,
-        styles: ["@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');\n\n    .levenshtein {\n      display: flex;\n      justify-content: center;\n      font-family: 'Roboto Mono', monospace;\n    }\n\n    .col {\n      display: flex;\n      flex-direction: column;\n    }\n\n    .char {\n      width: 0.7rem;\n      height: 1rem;\n    }\n  "]
+        styles: ["@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');\n\n    .levenshtein {\n      display: flex;\n      justify-content: center;\n      font-family: 'Roboto Mono', monospace;\n    }\n\n    .col {\n      display: flex;\n      flex-direction: column;\n    }\n\n    .char {\n      width: 0.7rem;\n      height: 1rem;\n    }\n\n    .char:not(.main) {\n      opacity: 0.3;\n    }\n  "]
     })
 ], LevenshteinComponent);
 
