@@ -32,7 +32,20 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<h2>Chris Milson</h2>\n<p>\n  <app-typer [words]=\"typerWords\"></app-typer>\n</p>\n\n<app-social></app-social>\n<app-wallpaper></app-wallpaper>\n<router-outlet></router-outlet>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<h2>Chris Milson</h2>\n<p>\n  <app-levenshtein [words]=\"typerWords\"></app-levenshtein>\n</p>\n\n<app-social></app-social>\n<app-wallpaper></app-wallpaper>\n<router-outlet></router-outlet>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/levenshtein/levenshtein.component.html":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/levenshtein/levenshtein.component.html ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"levenshtein\">\n<!-- columns for each character in display -->\n  <div\n    class=\"col\"\n    *ngFor=\"let char of display; let i = index\"\n  >\n    <div class=\"char\">\n      {{ displayAbove[i] }}\n    </div>\n    <div class=\"char\">\n      {{ char }}\n    </div>\n    <div class=\"char\">\n      {{ displayBelow[i] }}\n    </div>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -378,6 +391,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _typer_typer_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./typer/typer.component */ "./src/app/typer/typer.component.ts");
 /* harmony import */ var _wallpaper_wallpaper_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./wallpaper/wallpaper.component */ "./src/app/wallpaper/wallpaper.component.ts");
 /* harmony import */ var _social_social_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./social/social.component */ "./src/app/social/social.component.ts");
+/* harmony import */ var _levenshtein_levenshtein_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./levenshtein/levenshtein.component */ "./src/app/levenshtein/levenshtein.component.ts");
+
 
 
 
@@ -395,7 +410,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
             _typer_typer_component__WEBPACK_IMPORTED_MODULE_6__["TyperComponent"],
             _wallpaper_wallpaper_component__WEBPACK_IMPORTED_MODULE_7__["WallpaperComponent"],
-            _social_social_component__WEBPACK_IMPORTED_MODULE_8__["SocialComponent"]
+            _social_social_component__WEBPACK_IMPORTED_MODULE_8__["SocialComponent"],
+            _levenshtein_levenshtein_component__WEBPACK_IMPORTED_MODULE_9__["LevenshteinComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -406,6 +422,169 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/levenshtein/edit.ts":
+/*!*************************************!*\
+  !*** ./src/app/levenshtein/edit.ts ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return edit; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+function edit(s1, s2) {
+    const dp = new Array(s1.length + 1);
+    let i;
+    let j;
+    for (i = 0; i < s1.length + 1; i++) {
+        dp[i] = new Array(s2.length + 1);
+        dp[i][0] = i;
+    }
+    for (j = 1; j < s2.length + 1; j++) {
+        dp[0][j] = j;
+    }
+    for (i = 0; i < s1.length; i++) {
+        for (j = 0; j < s2.length; j++) {
+            if (s1[i] === s2[j]) {
+                dp[i + 1][j + 1] = dp[i][j];
+            }
+            else {
+                dp[i + 1][j + 1] = 1 + Math.min(dp[i][j], dp[i + 1][j], dp[i][j + 1]);
+            }
+        }
+    }
+    const moves = [];
+    // now we travel back up the tree
+    while (j > 0 && i > 0) {
+        if (s1[i - 1] === s2[j - 1]) {
+            moves.push(`leave`);
+            i--;
+            j--;
+        }
+        else if (dp[i][j] === dp[i][j - 1] + 1) {
+            moves.push(`add ${s2[j - 1]}`);
+            j--;
+        }
+        else if (dp[i][j] === dp[i - 1][j - 1] + 1) {
+            moves.push(`replace ${s2[j - 1]}`);
+            i--;
+            j--;
+        }
+        else {
+            moves.push(`remove`);
+            i--;
+        }
+    }
+    while (j-- > 0) {
+        moves.push(`add ${s2[j]}`);
+    }
+    while (i-- > 0) {
+        moves.push(`remove`);
+    }
+    return moves.reverse();
+}
+
+
+/***/ }),
+
+/***/ "./src/app/levenshtein/levenshtein.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/levenshtein/levenshtein.component.ts ***!
+  \******************************************************/
+/*! exports provided: LevenshteinComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LevenshteinComponent", function() { return LevenshteinComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/app/levenshtein/edit.ts");
+
+
+
+let LevenshteinComponent = class LevenshteinComponent {
+    constructor() {
+        this.words = ['horse', 'ros'];
+        this.current = 0;
+    }
+    ngOnInit() {
+        this.post();
+    }
+    ngOnDestroy() {
+        clearTimeout(this.timeout);
+    }
+    next() {
+        const next = (this.current + 1) % this.words.length;
+        const moves = Object(_edit__WEBPACK_IMPORTED_MODULE_2__["default"])(this.words[this.current], this.words[next])
+            .map(m => m.match(/^(\w+)( (.))?$/));
+        for (const move of moves) {
+            switch (move[1]) {
+                case 'add':
+                    // make space in display
+                    this.display.splice(this.displayAbove.length, 0, ' ');
+                    if (Math.random() < 0.5) {
+                        this.displayAbove.push(move[3]);
+                        this.displayBelow.push(' ');
+                    }
+                    else {
+                        this.displayBelow.push(move[3]);
+                        this.displayAbove.push(' ');
+                    }
+                    break;
+                case 'replace':
+                    if (Math.random() < 0.5) {
+                        this.displayAbove.push(move[3]);
+                        this.displayBelow.push(' ');
+                    }
+                    else {
+                        this.displayBelow.push(move[3]);
+                        this.displayAbove.push(' ');
+                    }
+                    break;
+                case 'remove':
+                    if (Math.random() < 0.5) {
+                        this.displayAbove.push('-');
+                        this.displayBelow.push(' ');
+                    }
+                    else {
+                        this.displayBelow.push('-');
+                        this.displayAbove.push(' ');
+                    }
+                    break;
+                case 'leave':
+                default:
+                    this.displayAbove.push(' ');
+                    this.displayBelow.push(' ');
+            }
+        }
+        this.current = next;
+        this.timeout = setTimeout(() => this.post(), 500);
+    }
+    post() {
+        this.display = [...this.words[this.current]];
+        this.displayAbove = [];
+        this.displayBelow = [];
+        this.timeout = setTimeout(() => this.next(), 3000);
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], LevenshteinComponent.prototype, "words", void 0);
+LevenshteinComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-levenshtein',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./levenshtein.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/levenshtein/levenshtein.component.html")).default,
+        styles: ["@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');\n\n    .levenshtein {\n      display: flex;\n      justify-content: center;\n      font-family: 'Roboto Mono', monospace;\n    }\n\n    .col {\n      display: flex;\n      flex-direction: column;\n    }\n\n    .char {\n      width: 0.7rem;\n      height: 1rem;\n    }\n  "]
+    })
+], LevenshteinComponent);
 
 
 
