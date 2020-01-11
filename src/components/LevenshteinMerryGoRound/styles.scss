@@ -19,7 +19,7 @@
 
     .from, .to {
         position: absolute;
-        animation: appear 0.75s both;
+        animation: appear 0.7s both;
         top: -0.1em;
     }
 
@@ -30,7 +30,7 @@
     }
 
     .to {
-        animation-delay: 1.25s;
+        animation-delay: 1.3s;
     }
 }
 

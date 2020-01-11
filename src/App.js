@@ -11,7 +11,7 @@ const words = [
   'Back End Developer',
   'Maker',
   'Japanese Speaker'
-]
+].map(w => w.toLowerCase())
 
 function App () {
   return (

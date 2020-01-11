@@ -27,10 +27,13 @@ class Changer extends React.Component {
   }
 
   componentDidMount () {
-    this.setState({
-      fromWidth: this.from.current.offsetWidth + 1,
-      toWidth: this.to.current.offsetWidth + 1
-    })
+    var fromWidth = this.from.current.offsetWidth
+    var toWidth = this.to.current.offsetWidth
+
+    if (fromWidth) fromWidth++
+    if (toWidth) toWidth++
+
+    this.setState({ fromWidth, toWidth })
     this.calculated = true
   }
 
