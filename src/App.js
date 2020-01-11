@@ -19,7 +19,6 @@ function App () {
       <h2>Chris Milson</h2>
       <p>
         <MerryGoRound words={words} />
-        {/* <MerryGoRound words={['a', 'b']} /> */}
       </p>
 
       <Social />
