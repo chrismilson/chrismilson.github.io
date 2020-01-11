@@ -10,8 +10,7 @@
     position: relative;
     display: inline-flex;
     flex-direction: column;
-    text-align: center;
-    transition: width;
+    align-items: center;
     animation: widen 1s both;
 
     .space {
@@ -20,11 +19,18 @@
 
     .from, .to {
         position: absolute;
-        animation: appear 1s 1s both;
+        animation: appear 0.75s both;
+        top: -0.1em;
     }
 
     .from {
+        user-select: none;
         animation-direction: reverse;
+        animation-delay: 1s;
+    }
+
+    .to {
+        animation-delay: 1.25s;
     }
 }
 
