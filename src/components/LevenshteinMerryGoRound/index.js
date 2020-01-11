@@ -2,12 +2,66 @@ import React from 'react'
 import edit from './edit'
 import './styles.scss'
 
-function Char (props) {
-  return (
-    <span
-      className={props.className + (props.char === ' ' ? ' space' : '')}
-    >{props.char === ' ' ? '-' : props.char}</span>
-  )
+/**
+ * A Changer is a component that takes two props:
+ *
+ * - from, and
+ * - to.
+ *
+ * It will first display the from character, and then morph into the second
+ * character.
+ *
+ * @param {*} props
+ */
+class Changer extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      fromWidth: 0,
+      toWidth: 0
+    }
+
+    this.from = React.createRef()
+    this.to = React.createRef()
+  }
+
+  componentDidMount () {
+    this.setState({
+      fromWidth: this.from.current.offsetWidth,
+      toWidth: this.to.current.offsetWidth
+    })
+    this.calculated = true
+  }
+
+  render () {
+    const { fromWidth, toWidth } = this.state
+    const { from, to } = this.props
+    return (
+      <span
+        className='Changer'
+        style={this.calculated && {
+          '--from-width': fromWidth + 'px',
+          '--to-width': toWidth + 'px',
+          animationDelay: fromWidth < toWidth ? '0s' : '2s'
+        }}
+        aria-hidden
+      >
+        <span
+          className={'from' + (from === ' ' ? ' space' : '')}
+          ref={this.from}
+        >
+          { from === ' ' ? '-' : from }
+        </span>
+        <span
+          className={'to' + (to === ' ' ? ' space' : '')}
+          ref={this.to}
+        >
+          { to === ' ' ? '-' : to }
+        </span>
+      </span>
+    )
+  }
 }
 
 export default class LevenshteinMerryGoRound extends React.Component {
@@ -17,17 +71,20 @@ export default class LevenshteinMerryGoRound extends React.Component {
     this.state = {
       display: []
     }
-
-    this.current = this.props.words ? this.props.words.length - 1 : 0
+    this.idx = 0
+    this.current = this.props.words && this.props.words.length - 1
   }
 
-  componentDidMount () { this.next() }
+  componentDidMount () { this.props.words && this.next() }
 
   componentWillUnmount () { clearInterval(this.timeout) }
 
   next () {
     if (!this.props.words || this.props.words.length < 1) return
-    const next = (this.current + 1) % this.props.words.length
+    var next
+    do {
+      next = Math.floor(Math.random() * this.props.words.length)
+    } while (next === this.current)
 
     const a = this.props.words[this.current]
     const b = this.props.words[next]
@@ -36,22 +93,21 @@ export default class LevenshteinMerryGoRound extends React.Component {
 
     this.current = next
 
-    this.timeout = setTimeout(() => this.next(), 3000)
+    this.timeout = setTimeout(() => this.next(), 4000)
   }
 
   render () {
-    return (
+    return this.props.words && (
       <span
         className='LevenshteinMerryGoRound'
-        aria-label={this.props.words && this.props.words[this.current]}
-      >{
-          this.state.display.map((c, idx) => (
-            <span key={idx} className='char' aria-hidden>
-              <Char className='orig' char={c.orig} />
-              <Char className='next' char={c.next} />
-            </span>
+        aria-label={this.state.display.map(c => c.next).join('')}
+      >
+        {
+          this.state.display.map((c) => (
+            <Changer key={this.idx++} from={c.orig} to={c.next} />
           ))
-        }</span>
+        }
+      </span>
     )
   }
 }
