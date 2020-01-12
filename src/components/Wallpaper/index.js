@@ -25,10 +25,12 @@ export default class Wallpaper extends React.Component {
   resize () {
     this.ctx.canvas.width = this.width = this.canvas.current.offsetWidth
     this.ctx.canvas.height = this.height = this.canvas.current.offsetHeight
-
-    this.circles = new Array(Math.floor(this.width * this.height / 100000))
-      .fill(0)
-      .map(c => new Circle(this.width, this.height))
+    const size = Math.floor(this.width * this.height / 100000)
+    if (!this.circles || this.circles.length !== size) {
+      this.circles = new Array(size)
+        .fill(0)
+        .map(c => new Circle(this.width, this.height))
+    }
   }
 
   drawCircles () {
