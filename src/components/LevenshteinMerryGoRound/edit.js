@@ -30,6 +30,22 @@ class Remove extends Move {
   }
 }
 
+export function editDistance (s1, s2) {
+  const dp = new Array(s2.length + 1).fill(0).map((z, i) => i)
+  var prev, next, j
+  prev = 0
+
+  for (dp[0] = 0; dp[0] < s1.length; prev = dp[0]++) {
+    for (j = 0; j < s2.length; j++) {
+      if (s1[dp[0]] === s2[j]) next = prev
+      else next = 1 + Math.min(dp[j - 1], dp[j], prev)
+      prev = dp[j + 1]
+      dp[j + 1] = next
+    }
+  }
+  return dp[dp.length - 1]
+}
+
 export default function edit (s1, s2) {
   const dp = new Array(s2.length + 1)
   var base = []
