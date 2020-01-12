@@ -22,6 +22,12 @@ class Changer extends React.Component {
       toWidth: 0
     }
 
+    this.fromSpace = props.from === ' '
+    this.toSpace = props.to === ' '
+
+    this.state.from = this.fromSpace ? 't' : props.from
+    this.state.to = this.toSpace ? 't' : props.to
+
     this.from = React.createRef()
     this.to = React.createRef()
   }
@@ -30,16 +36,13 @@ class Changer extends React.Component {
     var fromWidth = this.from.current.offsetWidth
     var toWidth = this.to.current.offsetWidth
 
-    if (fromWidth) fromWidth++
-    if (toWidth) toWidth++
-
     this.setState({ fromWidth, toWidth })
     this.calculated = true
   }
 
   render () {
-    const { fromWidth, toWidth } = this.state
-    const { from, to } = this.props
+    const { fromWidth, toWidth, from, to } = this.state
+
     return (
       <span
         className='Changer'
@@ -51,17 +54,13 @@ class Changer extends React.Component {
         aria-hidden
       >
         <span
-          className={'from' + (from === ' ' ? ' space' : '')}
+          className={'from' + (this.fromSpace ? ' space' : '')}
           ref={this.from}
-        >
-          { from === ' ' ? '-' : from }
-        </span>
+        >{ from }</span>
         <span
-          className={'to' + (to === ' ' ? ' space' : '')}
+          className={'to' + (this.toSpace ? ' space' : '')}
           ref={this.to}
-        >
-          { to === ' ' ? '-' : to }
-        </span>
+        >{ to }</span>
       </span>
     )
   }
@@ -106,8 +105,12 @@ export default class LevenshteinMerryGoRound extends React.Component {
         aria-label={this.state.display.map(c => c.next).join('')}
       >
         {
-          this.state.display.map((c) => (
-            <Changer key={this.idx++} from={c.orig} to={c.next} />
+          this.state.display.map(c => (
+            <Changer
+              key={this.idx++}
+              from={c.orig}
+              to={c.next}
+            />
           ))
         }
       </span>
