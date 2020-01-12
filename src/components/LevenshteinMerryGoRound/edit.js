@@ -31,52 +31,62 @@ class Remove extends Move {
 }
 
 export default function edit (s1, s2) {
-  const dp = new Array(s1.length + 1)
-  var i, j
+  const dp = new Array(s2.length + 1)
+  var base = []
+  var prev, next, i, j
 
-  for (i = 0; i < s1.length + 1; i++) {
-    dp[i] = new Array(s2.length + 1)
-    dp[i][0] = i
+  // initialise dp
+  dp[0] = {
+    moves: [],
+    cost: 0
   }
   for (j = 1; j < s2.length + 1; j++) {
-    dp[0][j] = j
+    base.push(new Add(s2[j - 1]))
+    dp[j] = {
+      moves: [...base],
+      cost: j
+    }
   }
+
+  base = []
 
   for (i = 0; i < s1.length; i++) {
-    for (j = 0; j < s2.length; j++) {
-      if (s1[i] === s2[j]) dp[i + 1][j + 1] = dp[i][j]
-      else {
-        dp[i + 1][j + 1] = 1 + Math.min(
-          dp[i][j],
-          dp[i + 1][j],
-          dp[i][j + 1]
+    prev = dp[0]
+    base.push(new Remove(s1[i]))
+    dp[0] = {
+      moves: [...base],
+      cost: i
+    }
+    for (j = 1; j < s2.length + 1; j++) {
+      next = {}
+      if (s1[i] === s2[j - 1]) {
+        next = {
+          moves: [...prev.moves, new Leave(s1[i])],
+          cost: prev.cost
+        }
+      } else {
+        next.cost = Math.min(
+          dp[j - 1].cost,
+          dp[j].cost,
+          prev.cost
         )
+        if (prev.cost === next.cost) {
+          next.moves = [...prev.moves, new Replace(s1[i], s2[j - 1])]
+        } else {
+          var valid = []
+          if (dp[j - 1].cost === next.cost) valid.push(new Add(s2[j - 1]))
+          if (dp[j].cost === next.cost) valid.push(new Remove(s1[i]))
+
+          const move = valid[Math.floor(Math.random() * valid.length)]
+
+          if (move.type === 'add') next.moves = [...dp[j - 1].moves, move]
+          else next.moves = [...dp[j].moves, move]
+        }
       }
+      prev = dp[j]
+      dp[j] = next
     }
   }
 
-  const moves = []
-  // now we travel back up the tree
-  while (j > 0 && i > 0) {
-    if (s1[i - 1] === s2[j - 1]) {
-      moves.push(new Leave(s1[i - 1]))
-      i--
-      j--
-    } else if (dp[i][j] === dp[i][j - 1] + 1) {
-      moves.push(new Add(s2[j - 1]))
-      j--
-    } else if (dp[i][j] === dp[i - 1][j - 1] + 1) {
-      moves.push(new Replace(s1[i - 1], s2[j - 1]))
-      i--
-      j--
-    } else {
-      moves.push(new Remove(s1[i - 1]))
-      i--
-    }
-  }
-
-  while (j-- > 0) moves.push(new Add(s2[j]))
-  while (i-- > 0) moves.push(new Remove(s1[i]))
-
-  return moves.reverse()
+  return dp[dp.length - 1].moves
 }
