@@ -11,23 +11,30 @@ export default class Wallpaper extends React.Component {
 
   componentDidMount () {
     this.ctx = this.canvas.current.getContext('2d')
+    this.resize()
+
+    this.drawCircles()
+    window.addEventListener('resize', () => this.resize())
+  }
+
+  componentWillUnmount () {
+    window.cancelAnimationFrame(this.timeout)
+    window.removeEventListener('resize', () => this.resize())
+  }
+
+  resize () {
     this.ctx.canvas.width = this.width = this.canvas.current.offsetWidth
     this.ctx.canvas.height = this.height = this.canvas.current.offsetHeight
 
-    this.circles = new Array(20).fill(0)
-      .map(z => new Circle(this.width, this.height))
-
-    this.drawCircles()
+    this.circles = new Array(Math.floor(this.width * this.height / 100000))
+      .fill(0)
+      .map(c => new Circle(this.width, this.height))
   }
-
-  componentWillUnmount () { window.cancelAnimationFrame(this.timeout) }
 
   drawCircles () {
     this.ctx.clearRect(0, 0, this.width, this.height)
     this.circles = this.circles.map(c => {
-      if (c.draw(this.ctx)) {
-        return new Circle(this.width, this.height)
-      }
+      if (c.draw(this.ctx)) return new Circle(this.width, this.height)
       return c
     })
 
