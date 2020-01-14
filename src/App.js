@@ -1,7 +1,7 @@
 import React from 'react'
 import Social from './components/Social'
 import Wallpaper from './components/Wallpaper'
-import MerryGoRound from './components/LevenshteinMerryGoRound'
+import NotTypist from 'react-not-typist' // I wrote this
 import './App.scss'
 
 const words = [
@@ -18,7 +18,7 @@ function App () {
     <div className='App'>
       <h2>Chris Milson</h2>
       <p>
-        <MerryGoRound words={words} />
+        <NotTypist words={words} />
       </p>
 
       <Social />
