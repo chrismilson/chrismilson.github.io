@@ -5,4 +5,6 @@ import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(<App />, document.getElementById('root'))
 
-serviceWorker.register()
+// The serviceworker is supplying the user-page resources when navigating to a
+// project page. For this reason, we are disabling the service worker.
+serviceWorker.unregister()
