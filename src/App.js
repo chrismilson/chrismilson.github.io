@@ -18,7 +18,7 @@ function App () {
     <div className='App'>
       <h2>Chris Milson</h2>
       <p>
-        <NotTypist words={words} />
+        <NotTypist speed={2000} delay={5000} words={words} />
       </p>
 
       <Social />
