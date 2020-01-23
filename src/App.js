@@ -7,10 +7,10 @@ import './App.scss'
 const words = [
   'Global Citizen',
   'Mathematician',
-  'Front End Developer',
-  'Back End Developer',
   'Maker',
-  'Japanese Speaker'
+  'Japanese Speaker',
+  'Front End Developer',
+  'Back End Developer'
 ].map(w => w.toLowerCase())
 
 function App () {
