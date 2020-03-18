@@ -14,21 +14,24 @@ export default function useCanvas(
   ) => void | (() => void)
 ) {
   const ref = useRef<HTMLCanvasElement>(null)
-  const [context, setContext] = useState<CanvasRenderingContext2D>(null)
+  const [context, setContext] = useState<CanvasRenderingContext2D | null>(null)
 
   useEffect(() => {
     const canvas = ref.current
-    canvas.width = canvas.offsetWidth
-    canvas.height = canvas.offsetHeight
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    ctx.canvas.width = canvas.offsetWidth
+    ctx.canvas.height = canvas.offsetHeight
 
-    setContext(canvas.getContext('2d'))
+    setContext(ctx)
   }, [ref])
 
   useLayoutEffect(() => {
     if (context) {
       return draw(context, context.canvas.width, context.canvas.height)
     }
-  }, [context])
+  }, [context, draw])
 
   return ref
 }
