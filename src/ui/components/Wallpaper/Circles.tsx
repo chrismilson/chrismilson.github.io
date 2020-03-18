@@ -1,5 +1,5 @@
 import React from 'react'
-import useCanvas from './hooks/useCanvas'
+import { CanvasWallpaper } from './Wallpaper'
 
 /**
  * Returns a random integer between two numbers, or if there is only one number,
@@ -13,13 +13,14 @@ const randomInt = (from: number, to = from) => {
   return from + Math.floor(Math.random() * (to - from))
 }
 
+/** A class representing a circle on the screen. */
 class Circle {
   static maxAge = 200
   private x = Math.random()
   private y = Math.random()
   private hue = randomInt(256)
   /**
-   * The age of a circle in milliseconds. A negative number represents an
+   * The age of the circle. A negative number represents an
    * unborn circle
    */
   private age = -randomInt(2 * Circle.maxAge)
@@ -30,7 +31,7 @@ class Circle {
       this.x = Math.random()
       this.y = Math.random()
       this.hue = randomInt(256)
-      this.age = -randomInt(200)
+      this.age = -randomInt(Circle.maxAge)
       this.size = Math.random() + 0.5
     }
   }
@@ -61,25 +62,29 @@ class Circle {
 /**
  * A wallpaper component that draws nice circles to the screen.
  */
-const Wallpaper: React.FC = () => {
-  const canvasRef = useCanvas((ctx, width, height) => {
-    const circles: Circle[] = []
-    for (let i = 0; i < (width * height) / 100000; i++) {
-      circles.push(new Circle())
-    }
+const Circles: React.FC = () => {
+  return (
+    <CanvasWallpaper
+      className="Circles"
+      draw={(ctx, width, height) => {
+        const circles: Circle[] = []
+        for (let i = 0; i < (width * height) / 100000; i++) {
+          circles.push(new Circle())
+        }
 
-    let frame: number
+        let frame: number
 
-    const drawFrame = () => {
-      frame = requestAnimationFrame(drawFrame)
-      ctx.clearRect(0, 0, width, height)
-      circles.forEach(c => c.draw(ctx))
-    }
+        const drawFrame = () => {
+          frame = requestAnimationFrame(drawFrame)
+          ctx.clearRect(0, 0, width, height)
+          circles.forEach(c => c.draw(ctx))
+        }
 
-    drawFrame()
-    return () => cancelAnimationFrame(frame)
-  })
-  return <canvas className="Wallpaper Circles" ref={canvasRef} />
+        drawFrame()
+        return () => cancelAnimationFrame(frame)
+      }}
+    />
+  )
 }
 
-export default Wallpaper
+export default Circles
