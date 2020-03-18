@@ -1,4 +1,5 @@
 import Circles from './Circles'
-import './index.css'
 
-export default Circles
+const allWallpapers = [Circles]
+
+export default allWallpapers[Math.floor(Math.random() * allWallpapers.length)]
