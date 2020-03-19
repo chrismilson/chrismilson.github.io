@@ -1,18 +1,7 @@
 import React from 'react'
 import { CanvasWallpaper } from './common/Wallpaper'
 import PVector from './common/PVector'
-
-/**
- * Returns a random integer between two numbers, or if there is only one number,
- * between zero and that number.
- *
- * @param from The lower bound
- * @param to The upper bound
- */
-const randomInt = (from: number, to = from) => {
-  if (from === to) from = 0
-  return from + Math.floor(Math.random() * (to - from))
-}
+import { randomInt, randomRange } from './common/random'
 
 /** A class representing a circle on the screen. */
 class Circle {
@@ -24,14 +13,14 @@ class Circle {
    * unborn circle
    */
   private age = -randomInt(2 * Circle.maxAge)
-  private size = Math.random() + 0.5
+  private size = randomRange(0.5, 1.5)
 
   private resetIfNeeded() {
     if (this.age > Circle.maxAge) {
       this.position = new PVector(Math.random(), Math.random())
       this.hue = randomInt(360)
       this.age = -randomInt(Circle.maxAge)
-      this.size = Math.random() + 0.5
+      this.size = randomRange(0.5, 1.5)
     }
   }
 
