@@ -1,5 +1,5 @@
 import React from 'react'
-import { CanvasWallpaper } from './Wallpaper'
+import { CanvasWallpaper } from './common/Wallpaper'
 import PVector from './common/PVector'
 
 /**

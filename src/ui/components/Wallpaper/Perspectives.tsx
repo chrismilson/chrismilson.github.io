@@ -1,5 +1,5 @@
 import React from 'react'
-import { CanvasWallpaper } from './Wallpaper'
+import { CanvasWallpaper } from './common/Wallpaper'
 
 /** Project a line of a set length from a point */
 const project = (

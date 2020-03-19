@@ -1,5 +1,5 @@
 import React from 'react'
-import { CanvasWallpaper } from './Wallpaper'
+import { CanvasWallpaper } from './common/Wallpaper'
 
 /**
  * Returns a random integer between two numbers, or if there is only one number,
