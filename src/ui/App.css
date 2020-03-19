@@ -1,0 +1,18 @@
+.App {
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+}
+
+.App .Social {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  font-size: x-large;
+}
