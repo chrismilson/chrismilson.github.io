@@ -93,7 +93,7 @@ const BouncyBalls: React.FC = () => (
   <CanvasWallpaper
     className="BouncyBalls"
     draw={(ctx, width, height) => {
-      const numBalls = (width * height) / 100000
+      const numBalls = (width * height) / 50000
       const balls: Ball[] = []
       for (let i = 0; i < numBalls; i++) {
         balls.push(new Ball(new PVector(0, 0), new PVector(width, height)))
