@@ -1,5 +1,6 @@
 import React from 'react'
 import { CanvasWallpaper } from './Wallpaper'
+import PVector from './common/PVector'
 
 /**
  * Returns a random integer in a given range, or if only one value is supplied,
@@ -12,74 +13,6 @@ const randomInt = (from: number, to: number = from) => {
 
 const randomRange = (from: number, to: number) => {
   return from + Math.random() * (to - from)
-}
-
-class PVector {
-  readonly x: number
-  readonly y: number
-
-  constructor(x: number, y: number = x) {
-    this.x = x
-    this.y = y
-  }
-
-  static componentWise(
-    action: (...components: number[]) => number,
-    ...vectors: PVector[]
-  ) {
-    return new PVector(
-      action(...vectors.map(v => v.x)),
-      action(...vectors.map(v => v.y))
-    )
-  }
-  componentWise(
-    action: (...components: number[]) => number,
-    ...extraVectors: PVector[]
-  ) {
-    return PVector.componentWise(action, this, ...extraVectors)
-  }
-
-  static add(...vectors: PVector[]) {
-    return PVector.componentWise(
-      (...components) => components.reduce((s, v) => s + v, 0),
-      ...vectors
-    )
-  }
-  add(...vectors: PVector[]) {
-    return PVector.add(this, ...vectors)
-  }
-
-  static subtract(from: PVector, ...vectors: PVector[]) {
-    return PVector.componentWise(
-      (from, sum) => from - sum,
-      from,
-      PVector.add(...vectors)
-    )
-  }
-  subtract(...vectors: PVector[]) {
-    return PVector.subtract(this, ...vectors)
-  }
-
-  static multiply(...vectors: PVector[]) {
-    return PVector.componentWise(
-      (...components) => components.reduce((p, v) => p * v, 1),
-      ...vectors
-    )
-  }
-  multiply(...vectors: PVector[]) {
-    return PVector.multiply(this, ...vectors)
-  }
-
-  static divide(dividend: PVector, ...divisors: PVector[]) {
-    return PVector.componentWise(
-      (dividend, divisor) => dividend / divisor,
-      dividend,
-      PVector.multiply(...divisors)
-    )
-  }
-  divide(...divisors: PVector[]) {
-    return PVector.divide(this, ...divisors)
-  }
 }
 
 class Ball {
