@@ -1,0 +1,8 @@
+.Social {
+  display: flex;
+}
+
+.Social .Icon {
+  color: inherit;
+  padding: 0.6em;
+}
