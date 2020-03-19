@@ -34,7 +34,7 @@ const Perspectives: React.FC = () => {
 
         const speed = 0.3
         const separation = 30
-        const length = -200
+        const length = -width / 7
         const lines = [
           {
             x: (2 * width) / 9,
