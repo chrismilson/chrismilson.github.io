@@ -21,45 +21,65 @@ const Perspectives: React.FC = () => {
     <CanvasWallpaper
       className="Perspectives"
       draw={(ctx, width, height) => {
-        const leftCenter = {
-          x: 0,
-          y: height / 4
-        }
-        const rightCenter = {
-          x: width,
-          y: (3 * height) / 4
-        }
+        const centers = [
+          {
+            x: 0,
+            y: height / 4
+          },
+          {
+            x: width,
+            y: (3 * height) / 4
+          }
+        ]
 
-        const leftVertical = (2 * width) / 9
-        const rightVertical = (7 * width) / 9
-
-        let leftOffset = 0
-        let rightOffset = 0
-        const separation = 30
-
-        const len = 150
         const speed = 0.3
+        const separation = 30
+        const length = -200
+        const lines = [
+          {
+            x: (2 * width) / 9,
+            offset: 0,
+            increment: speed,
+            separation,
+            length
+          },
+          {
+            x: (7 * width) / 9,
+            offset: 0,
+            increment: -2 * speed,
+            separation,
+            length
+          }
+        ]
         let hue = Math.floor(Math.random() * 256)
 
         let frame: number
 
+        ctx.lineWidth = 3
+        ctx.lineCap = 'round'
+
         const drawFrame = () => {
           frame = requestAnimationFrame(drawFrame)
           ctx.clearRect(0, 0, width, height)
-          ctx.strokeStyle = `hsla(${hue++}, 100%, 40%, 0.7)`
+          ctx.strokeStyle = `hsla(${hue++}, 100%, 40%, 0.6)`
 
           ctx.beginPath()
-          for (let y = leftOffset; y < height; y += separation) {
-            project(ctx, { x: leftVertical, y }, leftCenter, -len)
-            project(ctx, { x: leftVertical, y }, rightCenter, -len)
-          }
-          for (let y = rightOffset; y < height; y += separation) {
-            project(ctx, { x: rightVertical, y }, leftCenter, -len)
-            project(ctx, { x: rightVertical, y }, rightCenter, -len)
-          }
+          lines.forEach(({ x, offset, separation, length }) => {
+            centers.forEach(center => {
+              for (
+                let y = offset - separation;
+                y < height + separation;
+                y += separation
+              ) {
+                project(ctx, { x, y }, center, length)
+              }
+            })
+          })
+          ctx.closePath()
           ctx.stroke()
-          leftOffset = (leftOffset + speed) % separation
-          rightOffset = (rightOffset + separation - 2 * speed) % separation
+          lines.forEach(line => {
+            line.offset = (line.offset + line.increment) % line.separation
+          })
         }
 
         drawFrame()
