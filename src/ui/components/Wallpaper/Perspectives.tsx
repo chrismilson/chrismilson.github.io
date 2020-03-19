@@ -51,7 +51,7 @@ const Perspectives: React.FC = () => {
             length
           }
         ]
-        let hue = Math.floor(Math.random() * 256)
+        let hue = Math.floor(Math.random() * 360)
 
         let frame: number
 

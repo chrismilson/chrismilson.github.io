@@ -18,7 +18,7 @@ const randomInt = (from: number, to = from) => {
 class Circle {
   static maxAge = 200
   private position = new PVector(Math.random(), Math.random())
-  private hue = randomInt(256)
+  private hue = randomInt(360)
   /**
    * The age of the circle. A negative number represents an
    * unborn circle
@@ -29,7 +29,7 @@ class Circle {
   private resetIfNeeded() {
     if (this.age > Circle.maxAge) {
       this.position = new PVector(Math.random(), Math.random())
-      this.hue = randomInt(256)
+      this.hue = randomInt(360)
       this.age = -randomInt(Circle.maxAge)
       this.size = Math.random() + 0.5
     }

@@ -38,13 +38,13 @@ class Ball {
       randomRange(min.x + radius, max.x - radius),
       randomRange(min.y + radius, max.y - radius)
     )
-    this.v = new PVector(2 + Math.random() * 6, 2 + Math.random() * 6).multiply(
+    this.v = new PVector(1 + Math.random() * 3, 1 + Math.random() * 3).multiply(
       new PVector(randomInt(2) || -1, randomInt(2) || -1)
     )
     this.radius = radius
     this.min = min
     this.max = max.add(min.multiply(new PVector(-1)))
-    this.hue = randomInt(256)
+    this.hue = randomInt(360)
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -74,7 +74,7 @@ class Ball {
       this.v,
       this.max
     )
-    if (hit.x | hit.y) this.hue = randomInt(256)
+    if (hit.x | hit.y) this.hue = randomInt(360)
 
     this.s = this.s
       // apply velocity
@@ -86,7 +86,7 @@ class Ball {
       // lose momentum on any wall hit
       // .multiply(new PVector(1 - 0.1 * (hit.x + hit.y)))
       // add gravity
-      .add(new PVector(0, 0.25 * (1 - hit.y)))
+      .add(new PVector(0, 0.1 * (1 - hit.y)))
   }
 }
 
