@@ -1,19 +1,7 @@
 import React from 'react'
 import { CanvasWallpaper } from './common/Wallpaper'
 import PVector from './common/PVector'
-
-/**
- * Returns a random integer in a given range, or if only one value is supplied,
- * between zero and that value.
- */
-const randomInt = (from: number, to: number = from) => {
-  if (from === to) from = 0
-  return from + Math.floor(Math.random() * (to - from))
-}
-
-const randomRange = (from: number, to: number) => {
-  return from + Math.random() * (to - from)
-}
+import { randomInt, randomRange } from './common/random'
 
 class Ball {
   /** The displacement of the ball */
