@@ -1,5 +1,6 @@
 import React from 'react'
 import { CanvasWallpaper } from './common/Wallpaper'
+import { randomInt } from './common/random'
 
 /** Project a line of a set length from a point */
 const project = (
@@ -51,7 +52,7 @@ const Perspectives: React.FC = () => {
             length
           }
         ]
-        let hue = Math.floor(Math.random() * 360)
+        let hue = randomInt(360)
 
         let frame: number
 
