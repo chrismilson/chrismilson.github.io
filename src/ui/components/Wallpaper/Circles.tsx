@@ -1,5 +1,6 @@
 import React from 'react'
 import { CanvasWallpaper } from './common/Wallpaper'
+import PVector from './common/PVector'
 
 /**
  * Returns a random integer between two numbers, or if there is only one number,
@@ -16,8 +17,7 @@ const randomInt = (from: number, to = from) => {
 /** A class representing a circle on the screen. */
 class Circle {
   static maxAge = 200
-  private x = Math.random()
-  private y = Math.random()
+  private position = new PVector(Math.random(), Math.random())
   private hue = randomInt(256)
   /**
    * The age of the circle. A negative number represents an
@@ -28,8 +28,7 @@ class Circle {
 
   private resetIfNeeded() {
     if (this.age > Circle.maxAge) {
-      this.x = Math.random()
-      this.y = Math.random()
+      this.position = new PVector(Math.random(), Math.random())
       this.hue = randomInt(256)
       this.age = -randomInt(Circle.maxAge)
       this.size = Math.random() + 0.5
@@ -40,8 +39,8 @@ class Circle {
     if (this.age >= 0) {
       const path = new Path2D()
       path.arc(
-        ctx.canvas.width * this.x,
-        ctx.canvas.height * this.y,
+        ctx.canvas.width * this.position.x,
+        ctx.canvas.height * this.position.y,
         this.age * this.size,
         0,
         2 * Math.PI
