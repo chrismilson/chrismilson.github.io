@@ -74,6 +74,7 @@ class Ball {
       this.v,
       this.max
     )
+    if (hit.x | hit.y) this.hue = randomInt(256)
 
     this.s = this.s
       // apply velocity
