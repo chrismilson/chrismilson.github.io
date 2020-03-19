@@ -13,14 +13,16 @@ const IconLink: React.FC<{
   link: string
   title: string
   Icon: IconType
+  className?: string
 }> = props => {
-  const { link, title, Icon } = props
+  const { link, title, Icon, className } = props
   // if the link starts with 'http://' or 'https://', its not local.
   const isNotLocal = /^https?:\/\//.test(link)
 
   return (
     <a
       {...{
+        className: `Icon ${className}`,
         rel: isNotLocal ? 'noopener noreferrer' : undefined,
         target: '_blank',
         href: link,
