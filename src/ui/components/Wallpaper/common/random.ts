@@ -1,6 +1,9 @@
 /**
- * Returns a random integer in a given range, or if only one value is supplied,
- * between zero and that value.
+ * Returns a random integer between two numbers, or if there is only one number,
+ * between zero and that number.
+ *
+ * @param from The lower bound
+ * @param to The upper bound
  */
 export const randomInt = (from: number, to: number = from) => {
   if (from === to) from = 0
