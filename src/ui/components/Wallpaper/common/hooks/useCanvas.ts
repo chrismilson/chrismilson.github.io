@@ -19,12 +19,12 @@ export default function useCanvas(
   useEffect(() => {
     const canvas = ref.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-    ctx.canvas.width = canvas.offsetWidth
-    ctx.canvas.height = canvas.offsetHeight
+    const context = canvas.getContext('2d')
+    if (!context) return
+    context.canvas.width = canvas.offsetWidth
+    context.canvas.height = canvas.offsetHeight
 
-    setContext(ctx)
+    setContext(context)
   }, [ref])
 
   useLayoutEffect(() => {
