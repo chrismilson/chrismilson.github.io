@@ -114,8 +114,6 @@ const GameOfLife: React.FC = () => (
 
       const game = new Game(width, height)
 
-      let interval: number
-
       const draw = () => {
         ctx.clearRect(0, 0, width, height)
 
@@ -123,7 +121,7 @@ const GameOfLife: React.FC = () => (
         game.move()
       }
 
-      setInterval(draw, 100)
+      const interval = setInterval(draw, 100)
       return () => {
         clearInterval(interval)
       }
