@@ -1,5 +1,5 @@
 import React from 'react'
-import { CanvasWallpaper } from './common/Wallpaper'
+import { CanvasWallpaper, CanvasDrawingMethod } from './common/Wallpaper'
 import { randomInt } from './common/random'
 
 class Cell {
@@ -102,31 +102,30 @@ class Game {
   }
 }
 
+const draw: CanvasDrawingMethod = (ctx, widthPX, heightPX) => {
+  // transform the canvas
+  const width = widthPX / 10
+  const height = heightPX / 10
+  ctx.setTransform(10, 0, 0, 10, 0, 0)
+  ctx.globalAlpha = 0.2
+
+  const game = new Game(width, height)
+
+  const draw = () => {
+    ctx.clearRect(0, 0, width, height)
+
+    game.draw(ctx)
+    game.move()
+  }
+
+  const interval = setInterval(draw, 100)
+  return () => {
+    clearInterval(interval)
+  }
+}
+
 const GameOfLife: React.FC = () => (
-  <CanvasWallpaper
-    className="GameOfLife"
-    draw={(ctx, widthPX, heightPX) => {
-      // transform the canvas
-      const width = widthPX / 10
-      const height = heightPX / 10
-      ctx.setTransform(10, 0, 0, 10, 0, 0)
-      ctx.globalAlpha = 0.2
-
-      const game = new Game(width, height)
-
-      const draw = () => {
-        ctx.clearRect(0, 0, width, height)
-
-        game.draw(ctx)
-        game.move()
-      }
-
-      const interval = setInterval(draw, 100)
-      return () => {
-        clearInterval(interval)
-      }
-    }}
-  />
+  <CanvasWallpaper className="GameOfLife" draw={draw} />
 )
 
 export default GameOfLife
