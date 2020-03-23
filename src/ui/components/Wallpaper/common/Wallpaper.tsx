@@ -1,5 +1,5 @@
 import React from 'react'
-import useCanvas from './hooks/useCanvas'
+import useDrawingCanvas from 'react-hooks-use-drawing-canvas'
 import './Wallpaper.css'
 
 export type CanvasDrawingMethod = (
@@ -17,6 +17,6 @@ export const CanvasWallpaper: React.FC<{
   draw: CanvasDrawingMethod
 }> = props => {
   const { draw, className } = props
-  const canvasRef = useCanvas(draw)
+  const canvasRef = useDrawingCanvas(draw)
   return <canvas className={`Wallpaper Canvas ${className}`} ref={canvasRef} />
 }
