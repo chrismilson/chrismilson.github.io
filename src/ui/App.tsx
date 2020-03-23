@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Social from './components/Social'
 import Wallpaper from './components/Wallpaper'
+import NotTypist from 'react-not-typist'
 import './App.css'
 
 export default function App() {
+  const [word, setWord] = useState('My name is')
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setWord('Chris Milson')
+    }, 2000)
+    return () => clearTimeout(timeout)
+  }, [])
+
   return (
     <div className="App">
       <Social />
-      <h1>Chris Milson</h1>
+      <h1>
+        <NotTypist words={[word]} speed={1000} />
+      </h1>
       <Wallpaper />
     </div>
   )
