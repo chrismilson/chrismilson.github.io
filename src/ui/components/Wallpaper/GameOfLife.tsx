@@ -104,9 +104,10 @@ class Game {
 
 const draw: CanvasDrawingMethod = (ctx, widthPX, heightPX) => {
   // transform the canvas
-  const width = widthPX / 10
-  const height = heightPX / 10
-  ctx.setTransform(10, 0, 0, 10, 0, 0)
+  const ratio = 4
+  const width = widthPX / ratio
+  const height = heightPX / ratio
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0)
   ctx.globalAlpha = 0.2
 
   const game = new Game(width, height)
