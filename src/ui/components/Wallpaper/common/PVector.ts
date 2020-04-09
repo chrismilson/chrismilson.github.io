@@ -132,4 +132,44 @@ export default class PVector {
   divide(...divisors: PVector[]) {
     return PVector.divide(this, ...divisors)
   }
+
+  /** Multiplies a vector by a matrix [a b, c d], and translates by e, f. */
+  static transform(
+    vector: PVector,
+    a: number,
+    b: number,
+    c: number,
+    d: number,
+    e = 0,
+    f = 0
+  ) {
+    return new PVector(
+      vector.x * a + vector.y * c + e,
+      vector.x * b + vector.y * d + f
+    )
+  }
+  /** Multiplies the vector by a matrix [a b, c d], and translates by e, f. */
+  transform(a: number, b: number, c: number, d: number, e = 0, f = 0) {
+    return PVector.transform(this, a, b, c, d, e, f)
+  }
+
+  /** Rotates a vector by an angle. (anticlockwise in radians) */
+  static rotate(vector: PVector, theta: number) {
+    const cos = Math.cos(theta)
+    const sin = Math.sin(theta)
+    return vector.transform(cos, -sin, sin, cos, 0, 0)
+  }
+  /** Rotates the vector by an angle. (anticlockwise in radians) */
+  rotate(theta: number) {
+    return PVector.rotate(this, theta)
+  }
+
+  /** Scales a vector by a factor. */
+  static scale(vector: PVector, sf: number) {
+    return PVector.componentWise(x => sf * x, vector)
+  }
+  /** Scales the vector by a factor. */
+  scale(sf: number) {
+    return PVector.scale(this, sf)
+  }
 }
