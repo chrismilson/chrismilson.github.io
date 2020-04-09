@@ -129,8 +129,7 @@ const draw: CanvasDrawingMethod = (ctx, width, height) => {
     portrait = true
   }
 
-  const right = new Dragon(0, height / 2, 0, 0)
-  const left = new Dragon(0, 0, 0, height / 2)
+  const dragon = new Dragon(0, 0, 0, height / 2)
 
   const depth = new Slider(1, 0.01, 1, 9)
   let hue = randomInt(0, 360)
@@ -143,20 +142,27 @@ const draw: CanvasDrawingMethod = (ctx, width, height) => {
 
     ctx.save()
     ctx.transform(0.8, 0, 0, 0.8, width / 10, (3 * height) / 10)
-    // the left dragon
+
     ctx.save()
     ctx.translate(translate, 0)
     ctx.scale(-1, 1)
-    left.trace(ctx, depth.value)
-    right.trace(ctx, depth.value)
+    dragon.trace(ctx, depth.value)
+    ctx.save()
+    ctx.translate(0, height / 2)
+    ctx.scale(-1, -1)
+    dragon.trace(ctx, depth.value)
+    ctx.restore()
     ctx.restore()
 
-    // the right dragon
     ctx.save()
     ctx.translate(width - translate, 0)
     if (portrait) ctx.scale(-1, 1)
-    left.trace(ctx, depth.value)
-    right.trace(ctx, depth.value)
+    dragon.trace(ctx, depth.value)
+    ctx.save()
+    ctx.translate(0, height / 2)
+    ctx.scale(-1, -1)
+    dragon.trace(ctx, depth.value)
+    ctx.restore()
     ctx.restore()
 
     ctx.restore()
