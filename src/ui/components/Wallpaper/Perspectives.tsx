@@ -18,6 +18,14 @@ const project = (
 }
 
 const draw: CanvasDrawingMethod = (ctx, width, height) => {
+  if (width < height) {
+    // portrait! rotate.
+    const temp = width
+    width = height
+    height = temp
+    ctx.setTransform(0, 1, 1, 0, 0, 0)
+  }
+
   const centers = [
     {
       x: 0,
