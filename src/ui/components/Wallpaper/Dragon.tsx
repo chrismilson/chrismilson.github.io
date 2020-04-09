@@ -136,7 +136,9 @@ const draw: CanvasDrawingMethod = (ctx, width, height) => {
   const translate = width / 5
   ctx.globalAlpha = 0.5
 
-  const trace = () => {
+  let frame: number
+  const drawFrame = () => {
+    frame = requestAnimationFrame(drawFrame)
     ctx.clearRect(0, 0, width, height)
     ctx.beginPath()
 
@@ -173,8 +175,8 @@ const draw: CanvasDrawingMethod = (ctx, width, height) => {
     depth.next()
   }
 
-  const interval = setInterval(trace, 10)
-  return () => clearInterval(interval)
+  drawFrame()
+  return () => cancelAnimationFrame(frame)
 }
 
 const DragonCurve: React.FC = () => {
