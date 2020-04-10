@@ -131,7 +131,7 @@ const draw: CanvasDrawingMethod = (ctx, width, height) => {
 
   const dragon = new Dragon(0, 0, 0, height / 2)
 
-  const depth = new Slider(1, 0.01, 1, 9)
+  const depth = new Slider(2, 0.01, 2, 9)
   let hue = randomInt(0, 360)
   const translate = width / 5
   ctx.globalAlpha = 0.5
