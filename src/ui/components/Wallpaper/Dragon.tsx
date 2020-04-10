@@ -8,19 +8,27 @@ class Slider {
   change: number
   min: number
   max: number
+  onChange?: (isTop: boolean) => void
 
-  constructor(value: number, change: number, min: number, max: number) {
+  constructor(
+    value: number,
+    change: number,
+    min: number,
+    max: number,
+    onChange?: (isTop: boolean) => void
+  ) {
     this.value = value
     this.change = change
     this.min = min
     this.max = max
+    this.onChange = onChange
   }
 
   next() {
-    if (
-      this.value + this.change < this.min ||
-      this.value + this.change > this.max
-    ) {
+    const isTop = this.value + this.change > this.max
+    const isBottom = this.value + this.change < this.min
+    if (isTop || isBottom) {
+      if (this.onChange) this.onChange(isTop)
       this.change *= -1
     }
     this.value += this.change
@@ -130,8 +138,13 @@ const draw: CanvasDrawingMethod = (ctx, width, height) => {
   }
 
   const dragon = new Dragon(0, 0, 0, height / 2)
+  let reverse = false
 
-  const depth = new Slider(2, 0.01, 2, 9)
+  const depth = new Slider(2, 0.01, 2, 9, isTop => {
+    if (isTop) return
+    reverse = !reverse
+  })
+
   let hue = randomInt(0, 360)
   const translate = width / 5
   ctx.globalAlpha = 0.5
@@ -143,7 +156,8 @@ const draw: CanvasDrawingMethod = (ctx, width, height) => {
     ctx.beginPath()
 
     ctx.save()
-    ctx.transform(0.8, 0, 0, 0.8, width / 10, (3 * height) / 10)
+    if (reverse) ctx.transform(0.8, 0, 0, -0.8, width / 10, (7 * height) / 10)
+    else ctx.transform(0.8, 0, 0, 0.8, width / 10, (3 * height) / 10)
 
     ctx.save()
     ctx.translate(translate, 0)
