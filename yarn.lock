@@ -8477,10 +8477,10 @@ react-error-overlay@^6.0.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.6.tgz#ac4d9dc4c1b5c536c2c312bf66aa2b09bfa384e2"
   integrity sha512-Yzpno3enVzSrSCnnljmr4b/2KUQSMZaPuqmS26t9k4nW7uwJk6STWmH9heNjPuvqUTO3jOSPkHoKgO4+Dw7uIw==
 
-react-hooks-use-drawing-canvas@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/react-hooks-use-drawing-canvas/-/react-hooks-use-drawing-canvas-0.1.2.tgz#28e31d60aad4678ade220ac2337ff12848ab3d20"
-  integrity sha512-S3pzcKDqz007lSV9c7hEgh3C/Q2y8fLnqtOzm2QtI+SDwfuoiTQrulBTAOrcQ5I8KZ7XALpezBhBMqQsIg2bNQ==
+react-hooks-use-drawing-canvas@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/react-hooks-use-drawing-canvas/-/react-hooks-use-drawing-canvas-0.1.3.tgz#3fe1b0d042665ab6a9fe464dfdcb89cf234a026d"
+  integrity sha512-JGSHyf7JT7nvL1yZv/30ZUx0LywHeujmDaYoLvjX+bf+EPxE1NPI0JUkyEO+841t378I7LgjqVDMNjNurrDyCA==
 
 react-icons@^3.9.0:
   version "3.9.0"
