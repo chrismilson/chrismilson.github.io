@@ -172,4 +172,13 @@ export default class PVector {
   scale(sf: number) {
     return PVector.scale(this, sf)
   }
+
+  /** Gets the modulus of a vector */
+  static modulus(vector: PVector) {
+    return Math.sqrt(vector.x * vector.x + vector.y * vector.y)
+  }
+  /** Gets the modulus of a vector */
+  modulus() {
+    return PVector.modulus(this)
+  }
 }
