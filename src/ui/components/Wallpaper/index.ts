@@ -6,4 +6,9 @@ import Dragon from './Dragon'
 
 const allWallpapers = [Circles, Perspectives, BouncyBalls, GameOfLife, Dragon]
 
-export default allWallpapers[Math.floor(Math.random() * allWallpapers.length)]
+// Get the next wallpaper in the list and remember which one we just used
+const storage = window.localStorage
+const idx = parseInt(storage.getItem('wallpaper') || '0', 10)
+storage.setItem('wallpaper', `${(idx + 1) % allWallpapers.length}`)
+
+export default allWallpapers[idx]
