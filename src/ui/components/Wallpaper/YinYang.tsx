@@ -2,6 +2,10 @@ import React from 'react'
 import { CanvasWallpaper, CanvasDrawingMethod } from './common/Wallpaper'
 import { randomInt } from './common/random'
 
+// by changing these factors that pattern will evolve differently
+const leftFactor = 1
+const rightFactor = 1
+
 const layer = (
   ctx: CanvasRenderingContext2D,
   radius: number,
@@ -60,10 +64,10 @@ const layer = (
     ctx.fill()
   } else {
     ctx.translate(-radius / 2, 0)
-    layer(ctx, radius / 2, angle, primaryStyle, secondaryStyle)
+    layer(ctx, radius / 2, leftFactor * angle, primaryStyle, secondaryStyle)
 
     ctx.translate(radius, 0)
-    layer(ctx, radius / 2, angle, primaryStyle, secondaryStyle)
+    layer(ctx, radius / 2, rightFactor * angle, primaryStyle, secondaryStyle)
   }
 
   ctx.restore()
@@ -89,7 +93,7 @@ const draw: CanvasDrawingMethod = (ctx, width, height) => {
     ctx.fillRect(-width / 2, -height / 2, width, height)
     ctx.restore()
     hue = (hue + 0.2) % 360
-    angle = (angle + 0.005) % (Math.PI * 2)
+    angle = angle + 0.005
   }
 
   drawFrame()
