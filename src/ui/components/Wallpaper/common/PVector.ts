@@ -1,8 +1,7 @@
 /**
  * A class that represents a position vector in two dimensional space.
- *
- * @param x The x position
- * @param y The y position (defaults to be the same as the x position)
+ * @property x The x position
+ * @property y The y position
  */
 export default class PVector {
   /** The x-position of the vector */
@@ -10,6 +9,12 @@ export default class PVector {
   /** The y-position of the vector */
   readonly y: number
 
+  /**
+   * Makes a new PVector.
+   *
+   * @param x The x position
+   * @param y The y position (defaults to be the same as the x position)
+   */
   constructor(x: number, y: number = x) {
     this.x = x
     this.y = y
