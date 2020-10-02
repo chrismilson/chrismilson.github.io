@@ -4,6 +4,7 @@ import BouncyBalls from './BouncyBalls'
 import GameOfLife from './GameOfLife'
 import Dragon from './Dragon'
 import YinYang from './YinYang'
+import StarMap from './StarMap'
 
 const allWallpapers = [
   Circles,
@@ -11,7 +12,8 @@ const allWallpapers = [
   BouncyBalls,
   GameOfLife,
   Dragon,
-  YinYang
+  YinYang,
+  StarMap
 ]
 
 // Get the next wallpaper in the list and remember which one we just used
