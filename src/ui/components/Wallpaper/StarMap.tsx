@@ -165,9 +165,18 @@ class WebPoint {
 
   joinNeighbors(ctx: CanvasRenderingContext2D) {
     ctx.save()
-    ctx.strokeStyle = `hsl(${this.hue},60%,80%)`
 
     for (const neighbor of this.neighbors) {
+      const strength = Math.min(
+        1,
+        Math.max(
+          0,
+          1 -
+            this.pos.subtract(neighbor.pos).modulus() /
+              (4 * this.phasor.modulus())
+        )
+      )
+      ctx.strokeStyle = `hsla(${this.hue},60%,80%,${strength})`
       ctx.beginPath()
       ctx.moveTo(this.pos.x, this.pos.y)
       ctx.lineTo(neighbor.pos.x, neighbor.pos.y)
@@ -179,7 +188,7 @@ class WebPoint {
 
   paint(ctx: CanvasRenderingContext2D) {
     ctx.save()
-    ctx.fillStyle = `hsl(${this.hue},100%,80%)`
+    ctx.fillStyle = `hsl(${this.hue},70%,80%)`
 
     ctx.beginPath()
     ctx.arc(this.pos.x, this.pos.y, 3, 0, 2 * Math.PI)
