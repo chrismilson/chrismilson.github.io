@@ -1,15 +1,8 @@
 import React from 'react'
-import useDrawingCanvas from 'react-hooks-use-drawing-canvas'
+import useDrawingCanvas, { DrawingMethod } from 'react-hooks-use-drawing-canvas'
 import './Wallpaper.css'
 
-export type CanvasDrawingMethod = (
-  /** A drawing context on the canvas object. */
-  context: CanvasRenderingContext2D,
-  /** The width of the drawing context. */
-  width: number,
-  /** The height of the drawing context. */
-  height: number
-) => void | (() => void)
+export type CanvasDrawingMethod = DrawingMethod
 
 export const CanvasWallpaper: React.FC<{
   /** extra classes for css */
