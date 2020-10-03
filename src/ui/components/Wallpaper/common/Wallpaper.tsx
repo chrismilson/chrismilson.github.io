@@ -8,8 +8,19 @@ export const CanvasWallpaper: React.FC<{
   /** extra classes for css */
   className: string
   draw: CanvasDrawingMethod
+  /** Render the canvas pixelated; without interpolation. Default: false */
+  pixelated?: boolean
 }> = props => {
-  const { draw, className } = props
+  const { draw, className, pixelated = false } = props
   const canvasRef = useDrawingCanvas(draw)
-  return <canvas className={`Wallpaper Canvas ${className}`} ref={canvasRef} />
+  const classNames = ['Wallpaper', 'Canvas']
+
+  if (className !== undefined) {
+    classNames.push(className)
+  }
+  if (pixelated) {
+    classNames.push('pixelated')
+  }
+
+  return <canvas className={classNames.join(' ')} ref={canvasRef} />
 }
