@@ -208,7 +208,7 @@ class WebPoint {
   }
 }
 
-const draw: CanvasDrawingMethod = (ctx, width, height) => {
+const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
   const samples = poissantDiscSampler(
     width,
     height,

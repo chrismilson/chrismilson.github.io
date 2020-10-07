@@ -127,7 +127,7 @@ class Dragon {
   }
 }
 
-const draw: CanvasDrawingMethod = (ctx, width, height) => {
+const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
   let portrait = false
   if (width < height) {
     const temp = width

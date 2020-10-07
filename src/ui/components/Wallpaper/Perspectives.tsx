@@ -17,7 +17,7 @@ const project = (
   ctx.restore()
 }
 
-const draw: CanvasDrawingMethod = (ctx, width, height) => {
+const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
   if (width < height) {
     // portrait! rotate.
     const temp = width

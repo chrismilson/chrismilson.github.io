@@ -78,7 +78,7 @@ class Ball {
   }
 }
 
-const draw: CanvasDrawingMethod = (ctx, width, height) => {
+const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
   const numBalls = (width * height) / 50000
   const balls: Ball[] = []
   for (let i = 0; i < numBalls; i++) {

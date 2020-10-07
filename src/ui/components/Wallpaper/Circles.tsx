@@ -47,7 +47,7 @@ class Circle {
   }
 }
 
-const draw: CanvasDrawingMethod = (ctx, width, height) => {
+const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
   const circles: Circle[] = []
   for (let i = 0; i < (width * height) / 100000; i++) {
     circles.push(new Circle())
