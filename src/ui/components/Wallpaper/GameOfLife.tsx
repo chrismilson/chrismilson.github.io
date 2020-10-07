@@ -102,7 +102,10 @@ class Game {
   }
 }
 
-const draw: CanvasDrawingMethod = (ctx, widthPX, heightPX) => {
+const draw: CanvasDrawingMethod = (
+  ctx,
+  { width: widthPX, height: heightPX }
+) => {
   // transform the canvas
   const ratio = 4
   const width = widthPX / ratio
@@ -126,7 +129,7 @@ const draw: CanvasDrawingMethod = (ctx, widthPX, heightPX) => {
 }
 
 const GameOfLife: React.FC = () => (
-  <CanvasWallpaper className="GameOfLife" draw={draw} />
+  <CanvasWallpaper className="GameOfLife" draw={draw} pixelated />
 )
 
 export default GameOfLife

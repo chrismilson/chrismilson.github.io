@@ -73,7 +73,7 @@ const layer = (
   ctx.restore()
 }
 
-const draw: CanvasDrawingMethod = (ctx, width, height) => {
+const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
   const radius = Math.max(20, Math.min(width / 2, height / 2) - 20)
 
   ctx.translate(width / 2, height / 2)
