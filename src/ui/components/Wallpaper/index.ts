@@ -1,10 +1,12 @@
-import Circles from './Circles'
-import Perspectives from './Perspectives'
-import BouncyBalls from './BouncyBalls'
-import GameOfLife from './GameOfLife'
-import Dragon from './Dragon'
-import YinYang from './YinYang'
-import StarMap from './StarMap'
+import React from 'react'
+
+const Circles = React.lazy(() => import('./Circles'))
+const Perspectives = React.lazy(() => import('./Perspectives'))
+const BouncyBalls = React.lazy(() => import('./BouncyBalls'))
+const GameOfLife = React.lazy(() => import('./GameOfLife'))
+const Dragon = React.lazy(() => import('./Dragon'))
+const YinYang = React.lazy(() => import('./YinYang'))
+const StarMap = React.lazy(() => import('./StarMap'))
 
 const allWallpapers = [
   Circles,

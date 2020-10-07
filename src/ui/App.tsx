@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import Social from './components/Social'
 import Wallpaper from './components/Wallpaper'
 import NotTypist from 'react-not-typist'
@@ -20,7 +20,9 @@ export default function App() {
       <h1>
         <NotTypist words={[word]} speed={1000} />
       </h1>
-      <Wallpaper />
+      <Suspense fallback>
+        <Wallpaper />
+      </Suspense>
     </div>
   )
 }
