@@ -1,6 +1,6 @@
 import React from 'react'
-import { CanvasWallpaper, CanvasDrawingMethod } from './common/Wallpaper'
-import { randomInt } from './common/random'
+import { CanvasWallpaper, CanvasDrawingMethod } from '../common/Wallpaper'
+import { randomInt } from '../common/random'
 
 /** Project a line of a set length from a point */
 const project = (
