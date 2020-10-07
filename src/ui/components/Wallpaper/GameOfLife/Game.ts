@@ -1,39 +1,7 @@
-import React from 'react'
-import { CanvasWallpaper, CanvasDrawingMethod } from './common/Wallpaper'
-import { randomInt } from './common/random'
+import Cell from './Cell'
+import { randomInt } from '../common/random'
 
-class Cell {
-  private status: number
-  private neighbors: Cell[] = []
-
-  constructor(initiallyAlive: boolean) {
-    this.status = initiallyAlive ? 1 : 0
-  }
-
-  get isAlive() {
-    return this.status & 1
-  }
-
-  swap() {
-    this.status ^= 1
-  }
-
-  addNeighbor(neighbor: Cell) {
-    this.neighbors.push(neighbor)
-  }
-
-  check() {
-    const liveNeighbors = this.neighbors.reduce((s, n) => s + n.isAlive, 0)
-
-    if ((liveNeighbors | this.status) === 3) this.status |= 2
-  }
-
-  age() {
-    this.status = this.status >> 1
-  }
-}
-
-class Game {
+export default class Game {
   private width: number
   private height: number
   /**
@@ -101,35 +69,3 @@ class Game {
     }
   }
 }
-
-const draw: CanvasDrawingMethod = (
-  ctx,
-  { width: widthPX, height: heightPX }
-) => {
-  // transform the canvas
-  const ratio = 4
-  const width = widthPX / ratio
-  const height = heightPX / ratio
-  ctx.setTransform(ratio, 0, 0, ratio, 0, 0)
-  ctx.globalAlpha = 0.2
-
-  const game = new Game(width, height)
-
-  const draw = () => {
-    ctx.clearRect(0, 0, width, height)
-
-    game.draw(ctx)
-    game.move()
-  }
-
-  const interval = setInterval(draw, 100)
-  return () => {
-    clearInterval(interval)
-  }
-}
-
-const GameOfLife: React.FC = () => (
-  <CanvasWallpaper className="GameOfLife" draw={draw} pixelated />
-)
-
-export default GameOfLife
