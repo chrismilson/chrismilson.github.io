@@ -186,4 +186,11 @@ export default class PVector {
   modulus() {
     return PVector.modulus(this)
   }
+
+  /**
+   * PVectors will be compared by their lengths.
+   */
+  valueOf() {
+    return this.modulus()
+  }
 }
