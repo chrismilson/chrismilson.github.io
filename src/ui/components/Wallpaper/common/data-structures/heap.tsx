@@ -4,7 +4,7 @@
  * @param arr An array with a heap structure except perhaps at startIdx.
  * @param startIdx
  */
-const up = (arr: number[], startIdx: number) => {
+const up = <T,>(arr: T[], startIdx: number) => {
   let idx = startIdx
 
   while (idx > 0) {
@@ -26,7 +26,7 @@ const up = (arr: number[], startIdx: number) => {
  * @param arr An array with a heap structure except perhaps at startIdx.
  * @param startIdx
  */
-const down = (arr: number[], startIdx: number) => {
+const down = <T,>(arr: T[], startIdx: number) => {
   let idx = startIdx
 
   while (idx < arr.length) {
@@ -55,7 +55,7 @@ const down = (arr: number[], startIdx: number) => {
  *
  * @param arr The array to heapify
  */
-export const heapify = (arr: number[]) => {
+export const heapify = <T,>(arr: T[]) => {
   for (let i = arr.length - 1; i >= 0; i--) {
     down(arr, i)
   }
@@ -67,18 +67,18 @@ export const heapify = (arr: number[]) => {
  *
  * @param heap The heapified array to pop from.
  */
-export const heappop = (heap: number[]) => {
+export const heappop = <T,>(heap: T[]) => {
   if (heap.length <= 1) {
     return heap.pop()
   }
   // our heap has more than one element
   const result = heap[0]
-  heap[0] = heap.pop() as number
+  heap[0] = heap.pop() as T
   down(heap, 0)
   return result
 }
 
-export const heappush = (heap: number[], value: number) => {
+export const heappush = <T,>(heap: T[], value: T) => {
   up(heap, heap.push(value))
 }
 
@@ -89,7 +89,7 @@ export const heappush = (heap: number[], value: number) => {
  * @param heap The heapified array
  * @param value The value to add to the heap after popping.
  */
-export const heappushpop = (heap: number[], value: number) => {
+export const heappushpop = <T,>(heap: T[], value: T) => {
   if (heap.length < 1) {
     heap.push(value)
     return undefined

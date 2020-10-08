@@ -58,3 +58,42 @@ describe('heappop', () => {
     }
   })
 })
+
+describe('type inference', () => {
+  class Comparable {
+    private value: number
+
+    constructor(value: number) {
+      this.value = value
+    }
+
+    valueOf() {
+      return this.value
+    }
+  }
+
+  const examples: [(string | Comparable)[], string | Comparable][] = [
+    'abcdefg'.split(''),
+    'gkjhcubua'.split(''),
+    [new Comparable(7), new Comparable(4), new Comparable(2), new Comparable(1)]
+  ].map(arr => {
+    let minElem = arr[0]
+
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] < minElem) {
+        minElem = arr[i]
+      }
+    }
+
+    return [arr, minElem]
+  })
+
+  it.each(examples)(
+    'should find the minimum value among non-number inputs.',
+    (arr, minElem) => {
+      const heap = heapify([...arr])
+
+      expect(heappop(heap)).toBe(minElem)
+    }
+  )
+})
