@@ -1,4 +1,4 @@
-import { heapify, heappop } from './heap'
+import { heapify, heappop } from '../heap'
 
 describe('heapify', () => {
   /**
