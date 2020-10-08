@@ -114,7 +114,7 @@ const poissantDiscSampler = (
   // now we have finished generating the points, now we want to return the
   // points with a list of their possible neighbors
   return points.map(p => {
-    const neighbors = []
+    const neighbors: number[] = []
     const i = Math.floor(p.x / cellSize)
     const j = Math.floor(p.y / cellSize)
 

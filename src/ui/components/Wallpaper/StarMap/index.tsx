@@ -1,7 +1,7 @@
 import React from 'react'
 import PVector from '../common/PVector'
 import { CanvasWallpaper, CanvasDrawingMethod } from '../common/Wallpaper'
-import poissantDiscSampler from './poissantDiscSampler'
+import poissantDiscSampler from '../common/poissantDiscSampler'
 import WebPoint from './WebPoint'
 
 const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
