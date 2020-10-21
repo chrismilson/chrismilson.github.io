@@ -20,10 +20,10 @@ module.exports = {
   },
   overrides: [
     {
-      "files": ["**/*.tsx"],
-      "rules": {
+      files: ['**/*.tsx'],
+      rules: {
         // typescript takes care of its own types
-        "react/prop-types": "off"
+        'react/prop-types': 'off'
       }
     }
   ]
