@@ -4,7 +4,7 @@ import Wallpaper from './components/Wallpaper'
 import NotTypist from 'react-not-typist'
 import './App.css'
 
-export default function App() {
+const App: React.FC = () => {
   const [word, setWord] = useState('My name is')
 
   useEffect(() => {
@@ -26,3 +26,5 @@ export default function App() {
     </div>
   )
 }
+
+export default App
