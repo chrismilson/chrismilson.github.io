@@ -44,12 +44,6 @@ const poissantDiscSampler = (
     grid.push([...row])
   }
 
-  console.log(
-    Math.floor(startNode.x / cellSize),
-    Math.floor(startNode.y / cellSize),
-    grid.length
-  )
-
   // We should add the starting node to the grid
   grid[Math.floor(startNode.x / cellSize)][
     Math.floor(startNode.y / cellSize)
