@@ -18,6 +18,10 @@ const poissantDiscSampler = (
   startNode = new PVector(randomRange(0, width), randomRange(0, height)),
   K = 10
 ): [PVector, number[]][] => {
+  if (width < r && height < r) {
+    return []
+  }
+
   const points: PVector[] = [startNode]
   // Indices of the entries in points that are not processed yet
   const unprocessed: number[] = [0]
@@ -28,9 +32,24 @@ const poissantDiscSampler = (
    * A 2d array that contains the indices of the sampled points.
    * We will use it to check for other points within a certain area.
    */
-  const grid: number[][] = [...Array(Math.ceil(width / cellSize))].map(() =>
-    Array(Math.ceil(height / cellSize)).fill(-1)
+  // const grid: number[][] = [...Array(Math.ceil(width / cellSize))].map(() =>
+  //   Array(Math.ceil(height / cellSize)).fill(-1)
+  // )
+  const grid: number[][] = []
+  const row: number[] = []
+  for (let j = 0; j < Math.ceil(height / cellSize); j++) {
+    row.push(-1)
+  }
+  for (let i = 0; i < Math.ceil(width / cellSize); i++) {
+    grid.push([...row])
+  }
+
+  console.log(
+    Math.floor(startNode.x / cellSize),
+    Math.floor(startNode.y / cellSize),
+    grid.length
   )
+
   // We should add the starting node to the grid
   grid[Math.floor(startNode.x / cellSize)][
     Math.floor(startNode.y / cellSize)
