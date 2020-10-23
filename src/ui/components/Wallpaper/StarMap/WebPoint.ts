@@ -1,6 +1,10 @@
 import PVector from '../common/PVector'
 import { randomInt, randomRange } from '../common/random'
 
+export type RenderingContext2d =
+  | OffscreenCanvasRenderingContext2D
+  | CanvasRenderingContext2D
+
 export default class WebPoint {
   origin: PVector
   phasor: PVector
@@ -22,7 +26,7 @@ export default class WebPoint {
     this.hue = randomInt(360)
   }
 
-  joinNeighbors(ctx: CanvasRenderingContext2D) {
+  joinNeighbors(ctx: RenderingContext2d): void {
     ctx.save()
 
     for (const neighbor of this.neighbors) {
@@ -45,7 +49,7 @@ export default class WebPoint {
     ctx.restore()
   }
 
-  paint(ctx: CanvasRenderingContext2D) {
+  paint(ctx: RenderingContext2d): void {
     ctx.save()
     ctx.fillStyle = `hsl(${this.hue},70%,80%)`
 
@@ -57,12 +61,12 @@ export default class WebPoint {
     ctx.restore()
   }
 
-  spin() {
+  spin(): void {
     this.phasor = this.phasor.rotate(this.phasorSpeed)
     this.pos = this.origin.add(this.phasor)
   }
 
-  addNeighbor(neighbor: WebPoint) {
+  addNeighbor(neighbor: WebPoint): void {
     this.neighbors.push(neighbor)
   }
 }
