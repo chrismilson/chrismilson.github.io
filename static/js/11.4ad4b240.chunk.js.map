@@ -1,0 +1,1 @@
+{"version":3,"sources":["ui/components/Wallpaper/StarMap/draw.worker.ts"],"names":["Worker"],"mappings":"sIAAA,OAAe,qBACb,OAAO,IAAIA,OAAO,IAA0B","file":"static/js/11.4ad4b240.chunk.js","sourcesContent":["export default function() {\n  return new Worker(__webpack_public_path__ + \"static/js/draw.worker.5940b618.worker.js\");\n}\n"],"sourceRoot":""}

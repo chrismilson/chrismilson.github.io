@@ -1,0 +1,2 @@
+.Wallpaper{z-index:-10;position:absolute;top:0;left:0;width:100%;height:100%;-webkit-animation:fade-in 1s linear 0s both;animation:fade-in 1s linear 0s both}.Wallpaper .pixelated{-ms-interpolation-mode:nearest-neighbor;image-rendering:-moz-crisp-edges;image-rendering:pixelated}@-webkit-keyframes fade-in{0%{opacity:0}to{opacity:1}}@keyframes fade-in{0%{opacity:0}to{opacity:1}}
+/*# sourceMappingURL=5.0277607e.chunk.css.map */
