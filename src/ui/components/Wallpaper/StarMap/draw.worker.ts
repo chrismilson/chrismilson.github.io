@@ -1,19 +1,12 @@
 import {
-  DrawingMethodProps,
   exposeOffscreenDrawingMethod,
   OffscreenDrawingMethod
 } from 'react-hooks-use-offscreen-drawing-canvas'
 import PVector from '../common/PVector'
 import poissantDiscSampler from '../common/poissantDiscSampler'
 import WebPoint from './WebPoint'
-import { DrawingMethod } from 'react-hooks-use-drawing-canvas'
 
-export type HybridDrawingMethod = DrawingMethod & OffscreenDrawingMethod
-
-const draw = (
-  ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
-  options: DrawingMethodProps
-): void | (() => void) => {
+const draw: OffscreenDrawingMethod = (ctx, options) => {
   const { width, height } = options
   const samples = poissantDiscSampler(
     width,
@@ -49,5 +42,4 @@ const draw = (
   return () => cancelAnimationFrame(frame)
 }
 
-// we are in a web worker.
 exposeOffscreenDrawingMethod(draw)
