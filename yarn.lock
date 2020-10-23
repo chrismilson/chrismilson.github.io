@@ -8957,6 +8957,14 @@ react-hooks-use-drawing-canvas@^0.2.0:
   dependencies:
     react-hooks-use-canvas-size "^0.2.0"
 
+react-hooks-use-offscreen-drawing-canvas@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/react-hooks-use-offscreen-drawing-canvas/-/react-hooks-use-offscreen-drawing-canvas-0.1.3.tgz#5c4952d175aaf8d84741406854fdac1a099ebaaa"
+  integrity sha512-gtTP8idpGQABUNUpvi4/DA6YDenLbpPa3cjzC/LvbjO5F3rKOGDiO9gzSsTmTob/+pWvmmhSY3LaTjH1qIz5sg==
+  dependencies:
+    comlink "^4.3.0"
+    react-hooks-use-canvas-size "^0.2.0"
+
 react-icons@^3.9.0:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.11.0.tgz#2ca2903dfab8268ca18ebd8cc2e879921ec3b254"
