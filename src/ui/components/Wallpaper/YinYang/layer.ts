@@ -8,7 +8,7 @@ const layer = (
   angle: number,
   primaryStyle: string | CanvasGradient | CanvasPattern,
   secondaryStyle: string | CanvasGradient | CanvasPattern
-) => {
+): void => {
   // draw semicircles and go deeper
   ctx.save()
   ctx.rotate(angle)
