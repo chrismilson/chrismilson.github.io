@@ -33,7 +33,7 @@ const IconLink: React.FC<{
   )
 }
 
-export const Github = () => (
+export const Github: React.FC = () => (
   <IconLink
     title="Check out my Github"
     link="https://github.com/chrismilson"
@@ -41,7 +41,7 @@ export const Github = () => (
   />
 )
 
-export const Linkedin = () => (
+export const Linkedin: React.FC = () => (
   <IconLink
     title="Have a look at my Linkedin"
     link="https://linkedin.com/in/chris-milson"
@@ -49,7 +49,7 @@ export const Linkedin = () => (
   />
 )
 
-export const Resume = () => (
+export const Resume: React.FC = () => (
   <IconLink
     title="Take a peek at my resume..."
     link="CV.pdf"
@@ -57,7 +57,7 @@ export const Resume = () => (
   />
 )
 
-export const Twitter = () => (
+export const Twitter: React.FC = () => (
   <IconLink
     title="...Tweet tweet"
     link="https://twitter.com/_shlappas"
@@ -65,7 +65,7 @@ export const Twitter = () => (
   />
 )
 
-export const Dev = () => (
+export const Dev: React.FC = () => (
   <IconLink
     title="I have no posts here!!"
     link="https://dev.to/chrismilson"
