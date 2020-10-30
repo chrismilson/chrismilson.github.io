@@ -7,7 +7,6 @@ import {
   FaDev
 } from 'react-icons/fa'
 import { IconType } from 'react-icons/lib/cjs'
-import './Social.css'
 
 const IconLink: React.FC<{
   link: string
@@ -73,13 +72,3 @@ export const Dev = () => (
     Icon={FaDev}
   />
 )
-
-const Social: React.FC = () => (
-  <div className="Social">
-    <Github />
-    <Linkedin />
-    <Resume />
-  </div>
-)
-
-export default Social

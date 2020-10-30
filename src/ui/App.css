@@ -10,10 +10,23 @@
   transition: color 1s ease-in-out;
 }
 
-.App .Social {
+.App.Dark {
+  color: white;
+}
+
+.App .Icons {
   position: fixed;
   top: 0;
   right: 0;
 
   font-size: x-large;
+}
+
+.Icons {
+  display: flex;
+}
+
+.Icons .Icon {
+  color: inherit;
+  padding: 0.6em;
 }
