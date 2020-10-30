@@ -1,0 +1,15 @@
+.LightSwitch {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  font: inherit;
+}
+
+.LightSwitch.dark .sun {
+  display: none;
+}
+
+.LightSwitch.light .moon {
+  display: none;
+}
