@@ -18,10 +18,15 @@ const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
     const primaryStyle = `hsl(${hue},100%,40%)`
     const secondaryStyle = `hsl(${hue + 180}, 100%,40%)`
     layer(ctx, radius, angle, primaryStyle, secondaryStyle)
+
     ctx.save()
-    ctx.fillStyle = 'rgba(255,255,255,0.5)'
-    ctx.fillRect(-width / 2, -height / 2, width, height)
+    ctx.beginPath()
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI)
+    ctx.closePath()
+    ctx.fillStyle = 'rgba(255,255,255,0.45)'
+    ctx.fill()
     ctx.restore()
+
     hue = (hue + 0.2) % 360
     angle = angle + 0.005
   }
@@ -32,7 +37,7 @@ const draw: CanvasDrawingMethod = (ctx, { width, height }) => {
 }
 
 const YinYang: React.FC = () => {
-  return <CanvasWallpaper className="Perspectives" draw={draw} />
+  return <CanvasWallpaper className="YinYang" draw={draw} />
 }
 
 export default YinYang
