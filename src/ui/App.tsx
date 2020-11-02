@@ -3,11 +3,12 @@ import Wallpaper from './components/Wallpaper'
 import NotTypist from 'react-not-typist'
 import { Github, Linkedin, Resume } from './components/Social'
 import LightSwitch from './components/LightSwitch'
+import usePersistentState from '../hooks/usePersistantState'
 import './App.css'
 
 const App: React.FC = () => {
   const [word, setWord] = useState('My name is')
-  const [dark, setDark] = useState(true)
+  const [dark, setDark] = usePersistentState('darkMode', false)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
