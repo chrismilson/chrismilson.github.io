@@ -7,6 +7,7 @@ const GameOfLife = React.lazy(() => import('./GameOfLife'))
 const Dragon = React.lazy(() => import('./Dragon'))
 const YinYang = React.lazy(() => import('./YinYang'))
 const StarMap = React.lazy(() => import('./StarMap'))
+const Stripes = React.lazy(() => import('./Stripes'))
 
 const allWallpapers = [
   Circles,
@@ -15,12 +16,23 @@ const allWallpapers = [
   GameOfLife,
   Dragon,
   YinYang,
-  StarMap
+  StarMap,
+  Stripes
 ]
 
 // Get the next wallpaper in the list and remember which one we just used
 const storage = window.localStorage
-const idx = parseInt(storage.getItem('wallpaper') || '0', 10)
-storage.setItem('wallpaper', `${(idx + 1) % allWallpapers.length}`)
+const stored = storage.getItem('wallpaper')
+const idx = stored
+  ? parseInt(stored, 10)
+  : // If we have no storage, use a random wallpaper.
+    Math.floor(Math.random() * allWallpapers.length)
+try {
+  storage.setItem('wallpaper', `${(idx + 1) % allWallpapers.length}`)
+} catch (e) {
+  console.warn(
+    'Local storage is disabled; wallpapers will be supplied randomly.'
+  )
+}
 
 export default allWallpapers[idx]
