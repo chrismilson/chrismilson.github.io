@@ -7,6 +7,7 @@
   width: 100%;
   height: 100%;
   transition: background-color 1s ease-in-out;
+  animation: fade-in 1s ease-in-out both;
 }
 
 .Wallpaper .pixelated {
@@ -15,4 +16,9 @@
 
 .Dark .Wallpaper {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to {opacity: 1; }
 }

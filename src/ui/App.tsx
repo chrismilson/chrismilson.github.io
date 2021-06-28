@@ -7,12 +7,12 @@ import usePersistentState from '../hooks/usePersistantState'
 import './App.css'
 
 const App: React.FC = () => {
-  const [word, setWord] = useState('My name is')
+  const [word, setWord] = useState('')
   const [dark, setDark] = usePersistentState('darkMode', false)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setWord('Chris Milson')
+      setWord('')
     }, 2000)
     return () => clearTimeout(timeout)
   }, [])

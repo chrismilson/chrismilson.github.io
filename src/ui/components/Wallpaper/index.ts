@@ -7,7 +7,6 @@ const GameOfLife = React.lazy(() => import('./GameOfLife'))
 const Dragon = React.lazy(() => import('./Dragon'))
 const YinYang = React.lazy(() => import('./YinYang'))
 const StarMap = React.lazy(() => import('./StarMap'))
-const Stripes = React.lazy(() => import('./Stripes'))
 
 const allWallpapers = [
   Circles,
@@ -16,8 +15,7 @@ const allWallpapers = [
   GameOfLife,
   Dragon,
   YinYang,
-  StarMap,
-  Stripes
+  StarMap
 ]
 
 // Get the next wallpaper in the list and remember which one we just used
