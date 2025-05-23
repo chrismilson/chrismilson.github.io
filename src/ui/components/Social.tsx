@@ -2,7 +2,6 @@ import React from 'react'
 import {
   FaGithub,
   FaLinkedin,
-  FaIdBadge,
   FaTwitter,
   FaDev
 } from 'react-icons/fa'
@@ -49,13 +48,6 @@ export const Linkedin: React.FC = () => (
   />
 )
 
-export const Resume: React.FC = () => (
-  <IconLink
-    title="Take a peek at my resume..."
-    link="CV.pdf"
-    Icon={FaIdBadge}
-  />
-)
 
 export const Twitter: React.FC = () => (
   <IconLink

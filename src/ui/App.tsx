@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Suspense } from 'react'
 import Wallpaper from './components/Wallpaper'
 import NotTypist from 'react-not-typist'
-import { Github, Linkedin, Resume } from './components/Social'
+import { Github, Linkedin } from './components/Social'
 import LightSwitch from './components/LightSwitch'
 import usePersistentState from '../hooks/usePersistantState'
 import './App.css'
@@ -28,7 +28,6 @@ const App: React.FC = () => {
       <div className="Icons">
         <Github />
         <Linkedin />
-        <Resume />
         <LightSwitch dark={dark} onChange={() => setDark(d => !d)} />
       </div>
       <h1 className="Title">
