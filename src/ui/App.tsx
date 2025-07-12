@@ -32,10 +32,16 @@ const App: React.FC = () => {
       <section>
         <h2>Welcome</h2>
         <p>
-          This site is part of an ongoing self-hosting project, which includes managing various applications and services on personal infrastructure, mostly behind a private network. A particular focus is on reliable email delivery for these applications.
+          This site is part of an ongoing self-hosting project, which includes
+          managing various applications and services on personal infrastructure,
+          mostly behind a private network. A particular focus is on reliable
+          email delivery for these applications.
         </p>
         <p>
-          Email sent from this site is strictly transactional. For example: account confirmations, password resets, and notifications for users of the hosted applications. <strong>No marketing or unsolicited bulk email is sent.</strong>
+          Email sent from this site is strictly transactional. For example:
+          account confirmations, password resets, and notifications for users of
+          the hosted applications.{' '}
+          <strong>No marketing or unsolicited bulk email is sent.</strong>
         </p>
       </section>
       <Suspense fallback>
