@@ -1,6 +1,5 @@
 import React, { useEffect, useState, Suspense } from 'react'
 import Wallpaper from './components/Wallpaper'
-import NotTypist from 'react-not-typist'
 import { Github, Linkedin } from './components/Social'
 import LightSwitch from './components/LightSwitch'
 import usePersistentState from '../hooks/usePersistantState'
@@ -30,9 +29,15 @@ const App: React.FC = () => {
         <Linkedin />
         <LightSwitch dark={dark} onChange={() => setDark(d => !d)} />
       </div>
-      <h1 className="Title">
-        <NotTypist words={[word]} speed={1000} />
-      </h1>
+      <section>
+        <h2>Welcome</h2>
+        <p>
+          This site is part of an ongoing self-hosting project, which includes managing various applications and services on personal infrastructure, mostly behind a private network. A particular focus is on reliable email delivery for these applications.
+        </p>
+        <p>
+          Email sent from this site is strictly transactional. For example: account confirmations, password resets, and notifications for users of the hosted applications. <strong>No marketing or unsolicited bulk email is sent.</strong>
+        </p>
+      </section>
       <Suspense fallback>
         <Wallpaper />
       </Suspense>
