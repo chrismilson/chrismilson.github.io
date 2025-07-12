@@ -1,5 +1,5 @@
 section {
-  background: rgba(255, 255, 255, 0.5); /* more transparent white */
+  background: rgba(255, 255, 255, 0.4); /* more transparent white */
   backdrop-filter: blur(8px); /* subtle blur for the wallpaper behind */
   border-radius: 1rem;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
@@ -14,7 +14,7 @@ section h2 {
   text-align: center;
 }
 
- .Dark section {
+.Dark section {
   background: rgba(24, 24, 32, 0.5); /* more transparent dark */
 }
 .App {
