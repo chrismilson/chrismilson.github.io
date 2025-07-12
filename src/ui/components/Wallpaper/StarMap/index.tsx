@@ -1,5 +1,5 @@
 import React from 'react'
-import { DrawingMethod } from 'react-hooks-use-drawing-canvas'
+import { DrawingMethod } from '../common/react-hooks-use-drawing-canvas'
 import PVector from '../common/PVector'
 import poissantDiscSampler from '../common/poissantDiscSampler'
 import WebPoint from './WebPoint'

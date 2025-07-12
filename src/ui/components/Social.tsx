@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaDev
-} from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaTwitter, FaDev } from 'react-icons/fa'
 import { IconType } from 'react-icons/lib/cjs'
 
 const IconLink: React.FC<{
@@ -47,7 +42,6 @@ export const Linkedin: React.FC = () => (
     Icon={FaLinkedin}
   />
 )
-
 
 export const Twitter: React.FC = () => (
   <IconLink

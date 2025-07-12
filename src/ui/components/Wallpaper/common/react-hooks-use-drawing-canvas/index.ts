@@ -1,4 +1,10 @@
-import { MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import {
+  MutableRefObject,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} from 'react'
 
 export type DrawingMethod = (
   /** A 2d context on the referenced canvas */

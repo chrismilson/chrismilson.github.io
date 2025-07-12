@@ -1,5 +1,7 @@
 import React, { MutableRefObject } from 'react'
-import useDrawingCanvas, { DrawingMethod } from './react-hooks-use-drawing-canvas'
+import useDrawingCanvas, {
+  DrawingMethod
+} from './react-hooks-use-drawing-canvas'
 import './Wallpaper.css'
 
 export type CanvasDrawingMethod = DrawingMethod
@@ -22,5 +24,10 @@ export const CanvasWallpaper: React.FC<{
     classNames.push('pixelated')
   }
 
-  return <canvas className={classNames.join(' ')} ref={canvasRef as MutableRefObject<HTMLCanvasElement>} />
+  return (
+    <canvas
+      className={classNames.join(' ')}
+      ref={canvasRef as MutableRefObject<HTMLCanvasElement>}
+    />
+  )
 }
